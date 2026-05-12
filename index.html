@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inspira Models — Academia & Agencia de Talentos</title>
+<meta name="description" content="Inspira Models: Academia profesional, agencia de talentos y plataforma digital de contratación en Medellín, Colombia. Formación, castings y conexión con marcas.">
+<meta property="og:title" content="Inspira Models — Academia & Agencia de Talentos">
+<meta property="og:description" content="La plataforma de talentos más completa de Colombia. Inscríbete y conecta tu carrera con las mejores marcas.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV MOBILE -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nav-mobile-close" onclick="closeNav()">✕</button>
+  <a href="#nosotros" onclick="closeNav()">Academia</a>
+  <a href="#categorias" onclick="closeNav()">Talentos</a>
+  <a href="#precios" onclick="closeNav()">Precios</a>
+  <a href="#plataforma" onclick="closeNav()">Plataforma</a>
+  <a href="#academico" onclick="closeNav()">Académico</a>
+  <a href="empresas.html" onclick="closeNav()">Para Marcas</a>
+  <a href="#" onclick="closeNav(); openModal();" style="color:var(--gold)">Inscríbete</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">Inspira <span>Models</span></a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Academia</a></li>
+    <li><a href="#categorias">Talentos</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#plataforma">Plataforma</a></li>
+    <li><a href="empresas.html">Para Marcas</a></li>
+  </ul>
+  <a href="#" class="nav-cta" onclick="openModal(); return false;">Inscríbete</a>
+  <div class="nav-hamburger" onclick="openNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-badge">Academia & Agencia ✦ Medellín, Colombia</div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">La plataforma de talentos más completa</p>
+    <h1 class="hero-title">Tu carrera<br><em>empieza aquí.</em></h1>
+    <p class="hero-desc">Academia profesional, agencia de talentos y plataforma digital de contratación. Conectamos modelos excepcionales con las marcas que los merecen.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn-primary" onclick="openModal(); return false;">Inscríbete ahora</a>
+      <a href="#plataforma" class="btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16"/></svg>
+        Ver la plataforma
+      </a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">11</div><div class="stat-label">Categorías</div></div>
+    <div><div class="stat-num">100%</div><div class="stat-label">Digital</div></div>
+    <div><div class="stat-num">Medellín</div><div class="stat-label">Colombia</div></div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Comercial</span><span class="marquee-item">Editorial</span>
+    <span class="marquee-item">Pasarela</span><span class="marquee-item">Alta Costura</span>
+    <span class="marquee-item">Publicidad</span><span class="marquee-item">Fitness</span>
+    <span class="marquee-item">Actor & Actriz</span><span class="marquee-item">Influencer</span>
+    <span class="marquee-item">Host</span><span class="marquee-item">Modelo Infantil</span>
+    <span class="marquee-item">Reina & Imagen</span>
+    <span class="marquee-item">Comercial</span><span class="marquee-item">Editorial</span>
+    <span class="marquee-item">Pasarela</span><span class="marquee-item">Alta Costura</span>
+    <span class="marquee-item">Publicidad</span><span class="marquee-item">Fitness</span>
+    <span class="marquee-item">Actor & Actriz</span><span class="marquee-item">Influencer</span>
+    <span class="marquee-item">Host</span><span class="marquee-item">Modelo Infantil</span>
+    <span class="marquee-item">Reina & Imagen</span>
+  </div>
+</div>
+
+<!-- SOBRE NOSOTROS -->
+<section id="nosotros">
+  <div class="about">
+    <div>
+      <p class="section-label reveal">Quiénes somos</p>
+      <h2 class="section-title reveal reveal-delay-1">Más que una<br><em>agencia</em></h2>
+      <p class="section-text reveal reveal-delay-2">Inspira Models es el ecosistema completo para el desarrollo de talentos en Colombia. Somos academia, agencia y plataforma de contratación en uno solo, con tecnología de punta para proteger y potenciar cada carrera.</p>
+      <p class="section-text reveal reveal-delay-2">Nuestra metodología combina formación profesional rigurosa con exposición real al mercado, conectando modelos verificados con marcas exigentes a través de un sistema privado y controlado.</p>
+      <a href="#" class="btn-primary reveal reveal-delay-3" onclick="openModal(); return false;" style="margin-top:24px;display:inline-block">Conoce la plataforma</a>
+    </div>
+    <div class="about-visual reveal reveal-delay-2">
+      <div class="about-frame-main">
+        <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;">
+          <svg width="200" height="300" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.12">
+            <ellipse cx="100" cy="50" rx="35" ry="40" fill="#c9a96e"/>
+            <path d="M60 120 Q100 95 140 120 L155 280 H45 Z" fill="#c9a96e"/>
+            <line x1="100" y1="140" x2="60" y2="220" stroke="#c9a96e" stroke-width="2"/>
+            <line x1="100" y1="140" x2="140" y2="220" stroke="#c9a96e" stroke-width="2"/>
+          </svg>
+          <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(201,169,110,0.15),transparent 60%)"></div>
+        </div>
+      </div>
+      <div class="about-frame-accent">
+        <div class="accent-num">28+</div>
+        <div class="accent-label">Módulos integrados en una sola plataforma</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORÍAS -->
+<section class="categories-section" id="categorias">
+  <div class="categories-header">
+    <p class="section-label reveal" style="justify-content:center">Nuestros talentos</p>
+    <h2 class="section-title reveal reveal-delay-1">Categorías de<br><em>modelaje</em></h2>
+  </div>
+  <div class="categories-grid">
+    <div class="category-card reveal"><span class="category-num">01</span><span class="category-icon">📸</span><div class="category-name">Comercial</div><div class="category-desc">Publicidad masiva, catálogos y campañas de marca para medios tradicionales y digitales.</div></div>
+    <div class="category-card reveal reveal-delay-1"><span class="category-num">02</span><span class="category-icon">🖼️</span><div class="category-name">Editorial</div><div class="category-desc">Revistas, lookbooks y producciones artísticas de alto nivel estético y narrativo.</div></div>
+    <div class="category-card reveal reveal-delay-2"><span class="category-num">03</span><span class="category-icon">👠</span><div class="category-name">Pasarela</div><div class="category-desc">Desfiles de moda, presentaciones de diseñadores y eventos de temporada.</div></div>
+    <div class="category-card reveal reveal-delay-3"><span class="category-num">04</span><span class="category-icon">✨</span><div class="category-name">Alta Costura</div><div class="category-desc">Exclusivas colecciones de diseñadores y marcas de lujo nacionales e internacionales.</div></div>
+    <div class="category-card reveal"><span class="category-num">05</span><span class="category-icon">💪</span><div class="category-name">Fitness</div><div class="category-desc">Marcas deportivas, nutrición, wellness y lifestyle activo.</div></div>
+    <div class="category-card reveal reveal-delay-1"><span class="category-num">06</span><span class="category-icon">🎬</span><div class="category-name">Actor / Actriz</div><div class="category-desc">Producciones audiovisuales, comerciales y series para plataformas digitales.</div></div>
+    <div class="category-card reveal reveal-delay-2"><span class="category-num">07</span><span class="category-icon">📱</span><div class="category-name">Influencer</div><div class="category-desc">Contenido digital, redes sociales y colaboraciones estratégicas con marcas.</div></div>
+    <div class="category-card reveal reveal-delay-3"><span class="category-num">08</span><span class="category-icon">🌟</span><div class="category-name">Reina & Imagen</div><div class="category-desc">Certámenes de belleza, embajadoras de marca y representación institucional.</div></div>
+  </div>
+</section>
+
+<!-- PLATAFORMA -->
+<section class="platform-section" id="plataforma">
+  <div style="text-align:center">
+    <p class="section-label reveal" style="justify-content:center">Tecnología al servicio del talento</p>
+    <h2 class="section-title reveal reveal-delay-1">Una plataforma,<br><em>todo el ecosistema</em></h2>
+  </div>
+  <div class="platform-grid">
+    <div class="platform-item reveal"><div class="platform-icon-wrap">🔐</div><div><div class="platform-item-title">Sistema de Intermediación Privada</div><div class="platform-item-desc">Toda solicitud pasa primero por administración. Protegemos el contacto entre modelos y marcas, garantizando seguridad y transparencia.</div></div></div>
+    <div class="platform-item reveal reveal-delay-1"><div class="platform-icon-wrap">👤</div><div><div class="platform-item-title">Perfiles Profesionales Completos</div><div class="platform-item-desc">Portfolio, videobook, medidas, experiencia y certificaciones. Cada modelo tiene su vitrina digital editable y siempre actualizada.</div></div></div>
+    <div class="platform-item reveal"><div class="platform-icon-wrap">🔍</div><div><div class="platform-item-title">Buscador Inteligente</div><div class="platform-item-desc">Filtros por edad, estatura, ciudad, tipo de modelaje, experiencia, color de cabello, género y disponibilidad.</div></div></div>
+    <div class="platform-item reveal reveal-delay-1"><div class="platform-icon-wrap">💼</div><div><div class="platform-item-title">Panel Administrativo</div><div class="platform-item-desc">Revisión de solicitudes, aprobación de marcas, asignación de modelos, negociación de presupuestos y contratos.</div></div></div>
+    <div class="platform-item reveal"><div class="platform-icon-wrap">📋</div><div><div class="platform-item-title">Contratos Digitales</div><div class="platform-item-desc">Contratos automáticos, cesión de imagen, firmas digitales y autorizaciones para modelos menores.</div></div></div>
+    <div class="platform-item reveal reveal-delay-1"><div class="platform-icon-wrap">💰</div><div><div class="platform-item-title">Sistema de Comisiones</div><div class="platform-item-desc">Cálculo automático de comisiones, registro de pagos, historial financiero y panel de ganancias en tiempo real.</div></div></div>
+  </div>
+</section>
+
+<!-- FLUJO -->
+<section class="flow-section">
+  <p class="section-label reveal" style="justify-content:center">Cómo funciona</p>
+  <h2 class="section-title reveal reveal-delay-1">El proceso<br><em>es simple</em></h2>
+  <div class="flow-steps">
+    <div class="flow-step reveal"><div class="flow-num">01</div><div class="flow-step-title">Inscripción Online</div><div class="flow-step-desc">Registro, documentos, pago y firma digital. Tu perfil se crea automáticamente.</div></div>
+    <div class="flow-step reveal reveal-delay-1"><div class="flow-num">02</div><div class="flow-step-title">Formación Académica</div><div class="flow-step-desc">Clases de pasarela, fotopose, styling, maquillaje y más materias profesionales.</div></div>
+    <div class="flow-step reveal reveal-delay-2"><div class="flow-num">03</div><div class="flow-step-title">Portfolio Profesional</div><div class="flow-step-desc">Tu perfil completo con fotos, videos, medidas y experiencia actualizable.</div></div>
+    <div class="flow-step reveal reveal-delay-3"><div class="flow-num">04</div><div class="flow-step-title">Castings & Proyectos</div><div class="flow-step-desc">Las marcas solicitan talentos. Nosotros filtramos, seleccionamos y te asignamos.</div></div>
+    <div class="flow-step reveal reveal-delay-4"><div class="flow-num">05</div><div class="flow-step-title">Carrera Consolidada</div><div class="flow-step-desc">Historial profesional, calificaciones y reputación que impulsan tu trayectoria.</div></div>
+  </div>
+</section>
+
+<!-- ===== PRECIOS ===== -->
+<section class="pricing-section" id="precios">
+  <div style="text-align:center;margin-bottom:80px">
+    <p class="section-label reveal" style="justify-content:center">Inversión en tu carrera</p>
+    <h2 class="section-title reveal reveal-delay-1">Planes &<br><em>precios</em></h2>
+    <p class="section-text reveal reveal-delay-2" style="max-width:520px;margin:0 auto">Formación profesional accesible con opciones diseñadas para cada etapa de tu desarrollo. Todos los precios en pesos colombianos.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <!-- PLAN ACADEMIA -->
+    <div class="price-card reveal">
+      <div class="price-label">Plan Academia</div>
+      <div class="price-main">$120.000<span>/mes</span></div>
+      <div class="price-note">+ Inscripción única: $20.000</div>
+      <ul class="price-features">
+        <li>Todas las materias del programa académico</li>
+        <li>Pasarela, fotopose y styling</li>
+        <li>Maquillaje, autoestima y expresión corporal</li>
+        <li>Emprendimiento y manejo escénico</li>
+        <li>Acceso a castings y convocatorias internas</li>
+        <li>Perfil digital en la plataforma Inspira</li>
+        <li>Certificado de participación por módulo</li>
+      </ul>
+      <a href="#" class="btn-primary" onclick="openModal(); return false;">Inscribirme ahora</a>
+    </div>
+
+    <!-- PROMO DÚO 2x1 -->
+    <div class="price-card featured reveal reveal-delay-1">
+      <div class="price-badge-tag">PROMO</div>
+      <div class="price-label">Dúo 2 × 1</div>
+      <div class="price-main">$200.000</div>
+      <div class="price-note">Dos estudiantes · Un solo pago · Ahorra $40.000</div>
+      <ul class="price-features">
+        <li>Todo lo del Plan Academia para dos personas</li>
+        <li>Ideal para amigas, hermanas o primas</li>
+        <li>Ambas en el mismo ciclo y horario</li>
+        <li>Inscripción incluida para las dos</li>
+        <li>Mensualidad compartida en un pago</li>
+        <li>Acceso conjunto a castings y eventos</li>
+        <li>Seguimiento académico individual para cada una</li>
+      </ul>
+      <a href="https://wa.me/573104479013?text=Hola!%20Me%20interesa%20la%20promo%20D%C3%BAo%202x1%20de%20Inspira%20Models.%20%C2%BFCu%C3%A1les%20son%20los%20detalles%3F" target="_blank" class="btn-primary">Quiero esta promo</a>
+    </div>
+
+    <!-- CURSOS ESPECIALIZADOS -->
+    <div class="price-card reveal reveal-delay-2">
+      <div class="price-label">Cursos Especializados</div>
+      <div class="price-main">desde <br><span style="font-size:2.2rem;color:var(--white)">$300.000</span></div>
+      <div class="price-note">Sesiones intensivas de alto impacto · Con certificado</div>
+      <ul class="price-features">
+        <li>✦ <strong style="color:var(--gold)">Glamour & Producción</strong> — $500.000</li>
+        <li>✦ <strong style="color:var(--gold)">Protocolo</strong> — $500.000</li>
+        <li>✦ <strong style="color:var(--gold)">Etiqueta</strong> — $500.000</li>
+        <li>✦ <strong style="color:var(--gold)">Asesoría de Imagen</strong> — $300.000</li>
+        <li>Disponibles individual o en grupo</li>
+        <li>Certificado digital incluido</li>
+        <li>Cupos limitados por sesión</li>
+      </ul>
+      <a href="#curso-grupo" class="btn-outline-gold">Solicitar curso</a>
+    </div>
+  </div>
+
+  <!-- SOLICITAR CURSO PARA GRUPO -->
+  <div class="curso-grupo-box" id="curso-grupo">
+    <div>
+      <p class="section-label reveal">Cursos para grupos</p>
+      <h3 class="curso-grupo-title reveal reveal-delay-1">¿Necesitas un curso<br><em>personalizado?</em></h3>
+      <p class="section-text reveal reveal-delay-2">Organizamos sesiones especiales de Glamour, Protocolo, Etiqueta o Asesoría de Imagen para empresas, colegios, clubes y grupos familiares. Dinos cuántas personas son y te enviamos una cotización.</p>
+      <p class="section-text reveal reveal-delay-3" style="color:rgba(245,242,238,0.35)">Cr 49 Cl 50 #41 Local 214, Medellín · <a href="https://wa.me/573104479013" target="_blank" style="color:var(--gold);text-decoration:none">+57 310 447 9013</a></p>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div id="cursoGrupoSuccess" class="form-success">
+        <span class="form-success-icon">✦</span>
+        <div class="form-success-title">¡Solicitud enviada!</div>
+        <p class="form-success-text">Te contactaremos en menos de 24 horas con la cotización personalizada para tu grupo.</p>
+      </div>
+      <form id="cursoGrupoFormEl" onsubmit="submitCursoGrupo(event)">
+        <div id="cursoGrupoForm">
+          <div class="form-row">
+            <div class="form-group"><label>Nombre</label><input type="text" id="cgNombre" placeholder="Tu nombre completo" required></div>
+            <div class="form-group"><label>WhatsApp</label><input type="tel" id="cgWpp" placeholder="+57 310 447 9013" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Tipo de curso</label>
+              <select id="cgTipo" required>
+                <option value="" disabled selected>Selecciona</option>
+                <option>Glamour & Producción — $500.000</option>
+                <option>Protocolo — $500.000</option>
+                <option>Etiqueta — $500.000</option>
+                <option>Asesoría de Imagen — $300.000</option>
+                <option>Personalizado (varios temas)</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Número de personas</label><input type="number" id="cgPersonas" placeholder="Ej: 10" min="1" required></div>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:'Montserrat',sans-serif">Solicitar cotización</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- PERFILES -->
+<section class="profiles-section">
+  <p class="section-label reveal">Portales especializados</p>
+  <h2 class="section-title reveal reveal-delay-1">Diseñado para<br><em>cada usuario</em></h2>
+  <div class="profiles-tabs reveal reveal-delay-2">
+    <div class="profile-tab active" onclick="switchTab('modelo')">Para Modelos</div>
+    <div class="profile-tab" onclick="switchTab('marca')">Para Marcas</div>
+    <div class="profile-tab" onclick="switchTab('profesor')">Para Profesores</div>
+    <div class="profile-tab" onclick="switchTab('padre')">Para Padres</div>
+  </div>
+  <div class="profile-content active" id="tab-modelo">
+    <ul class="profile-features">
+      <li>Perfil profesional completo con fotos, videobook y medidas actualizables</li>
+      <li>Historial de trabajos, campañas y desfiles realizados</li>
+      <li>Dashboard con próximas clases, castings y notificaciones</li>
+      <li>Certificados y constancias digitales descargables</li>
+      <li>Control de disponibilidad e historial de ganancias</li>
+      <li>Aplicación a castings y seguimiento de procesos</li>
+      <li>Composite card automática generada con IA</li>
+      <li>Ranking de evolución y estadísticas profesionales</li>
+    </ul>
+    <div class="profile-card-preview">
+      <div class="profile-avatar">🌟</div>
+      <div class="profile-card-name">Valentina Ríos</div>
+      <div class="profile-card-role">Modelo Comercial & Pasarela</div>
+      <div class="profile-card-tags"><span class="profile-tag">Medellín</span><span class="profile-tag">1.70m</span><span class="profile-tag">Comercial</span><span class="profile-tag">Editorial</span><span class="profile-tag">Disponible</span></div>
+      <div class="profile-card-stats">
+        <div><div class="pcs-val">24</div><div class="pcs-label">Campañas</div></div>
+        <div><div class="pcs-val">4.9</div><div class="pcs-label">Reputación</div></div>
+        <div><div class="pcs-val">3 años</div><div class="pcs-label">Experiencia</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="profile-content" id="tab-marca">
+    <ul class="profile-features">
+      <li>Cuenta empresarial verificada con acceso al catálogo de talentos</li>
+      <li>Búsqueda avanzada con filtros por características físicas y tipo</li>
+      <li>Sistema de solicitudes privadas con definición de campaña y presupuesto</li>
+      <li>Visualización de portfolios y historial profesional verificado</li>
+      <li>Sin contacto directo — toda gestión pasa por la agencia</li>
+      <li>Contratos automáticos y cesión de imagen digitales</li>
+      <li>Valoraciones y referencias post-campaña</li>
+    </ul>
+    <div class="profile-card-preview">
+      <div class="profile-avatar">🏢</div>
+      <div class="profile-card-name">Marca Verificada</div>
+      <div class="profile-card-role">Cuenta Empresarial Premium</div>
+      <div class="profile-card-tags"><span class="profile-tag">Verificada ✓</span><span class="profile-tag">Activa</span><span class="profile-tag">Moda</span></div>
+      <div class="profile-card-stats">
+        <div><div class="pcs-val">12</div><div class="pcs-label">Campañas</div></div>
+        <div><div class="pcs-val">4.8</div><div class="pcs-label">Valoración</div></div>
+        <div><div class="pcs-val">Activa</div><div class="pcs-label">Estado</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="profile-content" id="tab-profesor">
+    <ul class="profile-features">
+      <li>Registro de asistencia y notas por materia</li>
+      <li>Creación de observaciones y evaluaciones personalizadas</li>
+      <li>Subida de material didáctico y tareas</li>
+      <li>Sistema de fortalezas y aspectos por mejorar por estudiante</li>
+      <li>Seguimiento de evolución académica longitudinal</li>
+      <li>Comunicación directa con padres y administración</li>
+    </ul>
+    <div class="profile-card-preview">
+      <div class="profile-avatar">👩‍🏫</div>
+      <div class="profile-card-name">Docente Inspira</div>
+      <div class="profile-card-role">Pasarela & Fotopose</div>
+      <div class="profile-card-tags"><span class="profile-tag">Activo</span><span class="profile-tag">Pasarela</span><span class="profile-tag">Styling</span></div>
+      <div class="profile-card-stats">
+        <div><div class="pcs-val">32</div><div class="pcs-label">Estudiantes</div></div>
+        <div><div class="pcs-val">8</div><div class="pcs-label">Materias</div></div>
+        <div><div class="pcs-val">4.9</div><div class="pcs-label">Evaluación</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="profile-content" id="tab-padre">
+    <ul class="profile-features">
+      <li>Seguimiento académico completo del hijo/hija en tiempo real</li>
+      <li>Notas, asistencia, horarios y observaciones</li>
+      <li>Comunicados y alertas de la academia</li>
+      <li>Autorización digital para menores en contratos y castings</li>
+      <li>Historial de evolución y logros del modelo</li>
+      <li>Canal directo con docentes y administración</li>
+    </ul>
+    <div class="profile-card-preview">
+      <div class="profile-avatar">👨‍👧</div>
+      <div class="profile-card-name">Portal de Padres</div>
+      <div class="profile-card-role">Supervisión & Seguimiento</div>
+      <div class="profile-card-tags"><span class="profile-tag">Activo</span><span class="profile-tag">1 Representado</span></div>
+      <div class="profile-card-stats">
+        <div><div class="pcs-val">95%</div><div class="pcs-label">Asistencia</div></div>
+        <div><div class="pcs-val">4.7</div><div class="pcs-label">Promedio</div></div>
+        <div><div class="pcs-val">3</div><div class="pcs-label">Castings</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACADÉMICO -->
+<section class="academic-section" id="academico">
+  <p class="section-label reveal">Formación profesional</p>
+  <h2 class="section-title reveal reveal-delay-1">Programa<br><em>académico</em></h2>
+  <p class="section-text reveal reveal-delay-2" style="max-width:560px">Un currículo diseñado por profesionales de la industria para desarrollar talentos integrales, seguros y competitivos en todos los niveles del modelaje.</p>
+  <div class="materias-grid">
+    <div class="materia-card reveal"><span class="materia-icon">👠</span><div class="materia-name">Pasarela</div><div class="materia-desc">Técnica de caminado, poses y porte para desfiles y producciones.</div></div>
+    <div class="materia-card reveal reveal-delay-1"><span class="materia-icon">📸</span><div class="materia-name">Fotopose</div><div class="materia-desc">Expresión corporal y gestual frente a la cámara en estudio y locación.</div></div>
+    <div class="materia-card reveal reveal-delay-2"><span class="materia-icon">👗</span><div class="materia-name">Styling</div><div class="materia-desc">Composición de looks, tendencias y construcción de imagen personal.</div></div>
+    <div class="materia-card reveal reveal-delay-3"><span class="materia-icon">🎭</span><div class="materia-name">Manejo Escénico</div><div class="materia-desc">Presencia en escena, confianza y manejo del espacio en eventos.</div></div>
+    <div class="materia-card reveal"><span class="materia-icon">🧘</span><div class="materia-name">Expresión Corporal</div><div class="materia-desc">Conciencia corporal, fluidez de movimiento y comunicación no verbal.</div></div>
+    <div class="materia-card reveal reveal-delay-1"><span class="materia-icon">💛</span><div class="materia-name">Autoestima</div><div class="materia-desc">Fortalecimiento psicológico, identidad y bienestar emocional del modelo.</div></div>
+    <div class="materia-card reveal reveal-delay-2"><span class="materia-icon">💄</span><div class="materia-name">Maquillaje</div><div class="materia-desc">Técnicas para diferentes tipos de producción y cuidado de la piel.</div></div>
+    <div class="materia-card reveal reveal-delay-3"><span class="materia-icon">💼</span><div class="materia-name">Emprendimiento</div><div class="materia-desc">Marca personal, finanzas, negociación y visión de negocio para modelos.</div></div>
+  </div>
+</section>
+
+<!-- PREMIUM -->
+<section class="premium-section">
+  <p class="section-label reveal" style="justify-content:center">Innovación & Tecnología</p>
+  <h2 class="section-title reveal reveal-delay-1">Funciones que nos<br><em>distinguen</em></h2>
+  <div class="premium-grid">
+    <div class="premium-card reveal"><span class="premium-icon">🤖</span><div class="premium-title">IA para Poses & Pasarela</div><div class="premium-desc">Inteligencia artificial que analiza y mejora la técnica de cada modelo con retroalimentación visual en tiempo real.</div></div>
+    <div class="premium-card featured reveal reveal-delay-1"><span class="premium-icon">📇</span><div class="premium-title">Composite Card Automática</div><div class="premium-desc">Generación automática de composite cards profesionales con las mejores fotos del portfolio, lista para compartir con marcas.</div></div>
+    <div class="premium-card reveal reveal-delay-2"><span class="premium-icon">📱</span><div class="premium-title">App Móvil Conectada</div><div class="premium-desc">Aplicación nativa para modelos, padres y marcas con notificaciones en tiempo real e integración con WhatsApp.</div></div>
+    <div class="premium-card reveal"><span class="premium-icon">📊</span><div class="premium-title">Estadísticas Profesionales</div><div class="premium-desc">Dashboard con métricas de evolución, ranking por desempeño y análisis de carrera para cada talento.</div></div>
+    <div class="premium-card reveal reveal-delay-1"><span class="premium-icon">📷</span><div class="premium-title">QR de Asistencia</div><div class="premium-desc">Sistema de registro de asistencia por código QR para clases, ensayos, producciones y eventos.</div></div>
+    <div class="premium-card reveal reveal-delay-2"><span class="premium-icon">🏪</span><div class="premium-title">Tienda Online</div><div class="premium-desc">Uniformes, tacones, accesorios, kits de maquillaje y productos de la agencia disponibles para todos los talentos.</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials-section">
+  <div style="text-align:center">
+    <p class="section-label reveal" style="justify-content:center">Lo que dicen</p>
+    <h2 class="section-title reveal reveal-delay-1">Testimonios<br><em>reales</em></h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal"><div class="testimonial-quote">"</div><div class="testimonial-text">Inspira Models transformó por completo mi carrera. La plataforma me dio visibilidad con marcas que jamás hubiera alcanzado sola. El respaldo de la agencia es invaluable.</div><div class="testimonial-author"><div class="testimonial-name">Laura Mejía</div><div class="testimonial-role">Modelo Comercial · Medellín</div></div></div>
+    <div class="testimonial-card reveal reveal-delay-1"><div class="testimonial-quote">"</div><div class="testimonial-text">Como marca, encontrar el talento exacto para nuestra campaña fue increíblemente sencillo. El proceso es transparente, profesional y muy seguro.</div><div class="testimonial-author"><div class="testimonial-name">Catalina Restrepo</div><div class="testimonial-role">Directora de Marketing · Empresa verificada</div></div></div>
+    <div class="testimonial-card reveal reveal-delay-2"><div class="testimonial-quote">"</div><div class="testimonial-text">El sistema académico me permite ver en tiempo real cómo avanza mi hija. Las clases, las notas, los castings… todo en un solo lugar. Me da mucha tranquilidad.</div><div class="testimonial-author"><div class="testimonial-name">Andrea Torres</div><div class="testimonial-role">Madre de modelo · Bello, Antioquia</div></div></div>
+  </div>
+</section>
+
+<!-- PARA MARCAS -->
+<section class="marcas-section" id="marcas">
+  <div class="marcas-inner">
+    <div>
+      <p class="section-label reveal">Para empresas</p>
+      <h2 class="section-title reveal reveal-delay-1">Encuentra el<br><em>talento exacto</em></h2>
+      <p class="section-text reveal reveal-delay-2">Accede al catálogo verificado de Inspira Models. Define tu campaña y nosotros seleccionamos el talento ideal para ti. Seguro, transparente y profesional.</p>
+      <a href="empresas.html" class="btn-primary reveal reveal-delay-2" style="margin-top:12px;margin-bottom:32px;display:inline-block">Ver portal de empresas →</a>
+      <ul class="marcas-beneficios">
+        <li class="reveal reveal-delay-1"><span>🔍</span><div><strong style="color:var(--white);display:block;margin-bottom:4px">Catálogo con filtros avanzados</strong>Busca por edad, estatura, tipo de modelaje, ciudad, disponibilidad y más.</div></li>
+        <li class="reveal reveal-delay-2"><span>🔐</span><div><strong style="color:var(--white);display:block;margin-bottom:4px">Sistema privado y controlado</strong>Toda gestión pasa por la agencia. Sin contacto directo, con total seguridad.</div></li>
+        <li class="reveal reveal-delay-3"><span>📋</span><div><strong style="color:var(--white);display:block;margin-bottom:4px">Contratos y pagos digitales</strong>Contratos automáticos, cesión de imagen y pagos seguros en una sola plataforma.</div></li>
+        <li class="reveal reveal-delay-4"><span>⭐</span><div><strong style="color:var(--white);display:block;margin-bottom:4px">Talentos verificados y certificados</strong>Cada modelo cuenta con historial profesional, calificaciones y reputación verificada.</div></li>
+      </ul>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="marcas-form-box">
+        <div class="form-success" id="marcasSuccess"><span class="form-success-icon">✦</span><div class="form-success-title">Solicitud enviada</div><p class="form-success-text">Nuestro equipo te contactará en menos de 24 horas.</p></div>
+        <div id="marcasFormWrap">
+          <div class="marcas-form-title">Solicitar talento</div>
+          <p class="marcas-form-sub">Cuéntanos sobre tu campaña — sin compromiso</p>
+          <form onsubmit="submitMarcasForm(event)">
+            <div class="form-row">
+              <div class="form-group"><label>Empresa</label><input type="text" placeholder="Nombre de tu empresa" required></div>
+              <div class="form-group"><label>Contacto</label><input type="text" placeholder="Tu nombre completo" required></div>
+            </div>
+            <div class="form-group"><label>WhatsApp / Email</label><input type="text" placeholder="+57 310 447 9013" required></div>
+            <div class="form-group"><label>Tipo de campaña</label><select required><option value="" disabled selected>Selecciona</option><option>Campaña publicitaria</option><option>Sesión fotográfica editorial</option><option>Desfile / pasarela</option><option>Contenido digital / redes</option><option>Evento corporativo</option><option>Producción audiovisual</option><option>Otro</option></select></div>
+            <div class="form-group"><label>¿Qué necesitas? (opcional)</label><textarea rows="3" placeholder="Número de modelos, fechas, presupuesto..."></textarea></div>
+            <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:'Montserrat',sans-serif">Enviar solicitud</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="inscripcion">
+  <div class="cta-content">
+    <p class="section-label reveal" style="justify-content:center">¿Lista para empezar?</p>
+    <h2 class="cta-title reveal reveal-delay-1">Tu talento<br>merece un<br><em>escenario mayor.</em></h2>
+    <p class="cta-subtitle reveal reveal-delay-2">Únete a la plataforma de talentos más completa de Colombia.<br>Inscripción online · Pago seguro · Perfil listo en 24 horas.</p>
+    <div class="cta-buttons reveal reveal-delay-3">
+      <a href="#" class="btn-primary" onclick="openModal(); return false;">Inscribirse como Modelo</a>
+      <a href="#marcas" class="btn-outline-gold">Soy una Marca</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo">Inspira <span>Models</span></a>
+      <p>Academia profesional, agencia de talentos y plataforma de contratación para modelos en Colombia. Potenciamos carreras, conectamos talentos.</p>
+      <p style="margin-bottom:8px">📍 Cr 49 Cl 50 #41 Local 214, Medellín</p>
+      <p><a href="https://wa.me/573104479013" target="_blank" style="color:var(--gold);text-decoration:none">📱 +57 310 447 9013</a></p>
+      <div class="social-links" style="margin-top:20px">
+        <a href="#" class="social-link">📸</a>
+        <a href="#" class="social-link">📘</a>
+        <a href="#" class="social-link">▶️</a>
+        <a href="#" class="social-link">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Plataforma</h4>
+      <ul>
+        <li><a href="#">Portal Modelos</a></li>
+        <li><a href="#">Portal Marcas</a></li>
+        <li><a href="#">Portal Profesores</a></li>
+        <li><a href="#">Portal Padres</a></li>
+        <li><a href="empresas.html">Para Empresas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Academia</h4>
+      <ul>
+        <li><a href="#academico">Programa académico</a></li>
+        <li><a href="#categorias">Categorías</a></li>
+        <li><a href="#precios">Precios</a></li>
+        <li><a href="#precios">Cursos especializados</a></li>
+        <li><a href="#precios">Promo 2x1</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal & Soporte</h4>
+      <ul>
+        <li><a href="#">Términos & condiciones</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Protección de datos</a></li>
+        <li><a href="https://wa.me/573104479013" target="_blank">Soporte WhatsApp</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Inspira Models · Cr 49 Cl 50 #41 Local 214, Medellín · <a href="https://wa.me/573104479013" target="_blank">+57 310 447 9013</a></p>
+    <p>Diseñado con ♦ para potenciar talentos</p>
+  </div>
+</footer>
+
+<!-- MODAL INSCRIPCIÓN -->
+<div class="modal-overlay" id="inscripcionModal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <h2 class="modal-title">Comienza tu<br><em>historia</em></h2>
+      <p class="modal-subtitle">Inscripción online · Proceso 100% digital</p>
+    </div>
+    <div class="modal-body">
+      <div id="modalSuccess" class="form-success">
+        <span class="form-success-icon">✦</span>
+        <div class="form-success-title">¡Bienvenido a Inspira!</div>
+        <p class="form-success-text">Recibimos tu solicitud. En menos de 24 horas nuestro equipo se comunicará contigo por WhatsApp para completar el proceso.</p>
+        <a href="#" onclick="closeModal(); return false;" class="btn-primary" style="margin-top:24px;display:inline-block">Volver al inicio</a>
+      </div>
+      <div id="modalFormWrap">
+        <div class="modal-type-selector">
+          <button class="type-btn active" onclick="selectType('modelo', this)"><span class="type-icon">🌟</span>Soy Modelo</button>
+          <button class="type-btn" onclick="selectType('padre', this)"><span class="type-icon">👨‍👧</span>Soy Padre/Tutor</button>
+        </div>
+        <form id="inscripcionForm" onsubmit="submitInscripcion(event)">
+          <div class="form-row">
+            <div class="form-group"><label>Nombre</label><input type="text" id="inscNombre" placeholder="Nombre completo" required></div>
+            <div class="form-group"><label>Edad</label><input type="number" id="inscEdad" placeholder="Ej: 22" min="4" max="60" required></div>
+          </div>
+          <div class="form-group"><label>WhatsApp</label><input type="tel" id="inscWpp" placeholder="+57 300 000 0000" required></div>
+          <div class="form-group"><label>Ciudad</label><input type="text" id="inscCiudad" placeholder="Medellín, Bogotá..." required></div>
+          <div class="form-group"><label>Categoría de interés</label><select id="inscCategoria" required><option value="" disabled selected>Selecciona</option><option>Comercial</option><option>Editorial</option><option>Pasarela</option><option>Alta Costura</option><option>Fitness</option><option>Actor / Actriz</option><option>Influencer</option><option>Reina & Imagen</option><option>Modelo Infantil</option><option>No sé aún / Explorar</option></select></div>
+          <div class="form-group"><label>¿Cómo nos conociste?</label><select><option value="" disabled selected>Selecciona</option><option>Instagram</option><option>TikTok</option><option>Facebook</option><option>Recomendación</option><option>Google</option><option>Evento o casting</option><option>Otro</option></select></div>
+          <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;margin-top:8px">Enviar inscripción</button>
+          <p style="font-size:0.55rem;color:rgba(245,242,238,0.3);text-align:center;margin-top:16px;line-height:1.8">Al enviar aceptas nuestros términos y política de privacidad.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/573104479013" class="whatsapp-btn" target="_blank" title="Contáctanos por WhatsApp">💬</a>
+
+<script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "name": "inspira-models",
+  "builds": [
+    {
+      "src": "**/*.{html,css,js}",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/empresas",
+      "dest": "/empresas.html"
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    }
+  ]
+}

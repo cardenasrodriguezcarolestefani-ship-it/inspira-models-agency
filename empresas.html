@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inspira Models para Empresas — Encuentra el talento que tu marca necesita</title>
+<meta name="description" content="Inspira Models: Catálogo verificado de modelos y talentos para campañas, desfiles y producciones en Medellín, Colombia. Solicita talentos de forma privada y segura.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ESTILOS EXCLUSIVOS EMPRESAS */
+  .emp-hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 140px 60px 100px;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(201,169,110,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 20%, rgba(196,146,122,0.05) 0%, transparent 50%),
+      linear-gradient(160deg, #0a0a0a 0%, #111008 100%);
+    overflow: hidden;
+  }
+  .emp-hero-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 100px; align-items: center;
+    position: relative; z-index: 1; width: 100%;
+  }
+  .emp-hero-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 0.5rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid rgba(201,169,110,0.3);
+    padding: 8px 16px; margin-bottom: 32px;
+    background: rgba(201,169,110,0.04);
+  }
+  .emp-hero-badge::before { content: '✦'; font-size: 0.4rem; }
+
+  .emp-trust-strip {
+    display: flex; gap: 40px; margin-top: 48px; flex-wrap: wrap;
+  }
+  .emp-trust-item { text-align: center; }
+  .emp-trust-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 300; color: var(--gold); line-height: 1;
+  }
+  .emp-trust-label { font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,242,238,0.35); margin-top: 4px; }
+
+  .emp-card-demo {
+    background: #111; border: 1px solid rgba(201,169,110,0.15);
+    padding: 0; position: relative; overflow: hidden;
+  }
+  .emp-card-demo::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), var(--rose)); }
+  .emp-card-header {
+    padding: 28px 32px; border-bottom: 1px solid rgba(201,169,110,0.1);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .emp-card-header-title { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 300; letter-spacing: 0.05em; }
+  .emp-card-verified { font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,169,110,0.3); padding: 4px 10px; }
+  .emp-catalog-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: rgba(201,169,110,0.05); }
+  .emp-model-mini { padding: 20px; background: #111; text-align: center; transition: background 0.3s; }
+  .emp-model-mini:hover { background: #161410; }
+  .emp-model-avatar { width: 52px; height: 52px; border-radius: 0; background: linear-gradient(135deg, rgba(201,169,110,0.1), rgba(196,146,122,0.2)); border: 1px solid rgba(201,169,110,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin: 0 auto 12px; }
+  .emp-model-name { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; margin-bottom: 4px; }
+  .emp-model-type { font-size: 0.48rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+  .emp-model-stats { display: flex; justify-content: center; gap: 12px; margin-top: 10px; }
+  .emp-model-stat { font-size: 0.48rem; color: rgba(245,242,238,0.35); letter-spacing: 0.06em; }
+  .emp-card-footer { padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(201,169,110,0.08); }
+  .emp-card-count { font-size: 0.55rem; color: rgba(245,242,238,0.35); letter-spacing: 0.1em; }
+
+  /* PROCESO */
+  .emp-process-section { background: var(--charcoal); }
+  .emp-process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 80px; }
+  .emp-step { text-align: center; }
+  .emp-step-icon { width: 72px; height: 72px; border: 1px solid rgba(201,169,110,0.25); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 24px; transition: all 0.3s; }
+  .emp-step:hover .emp-step-icon { border-color: var(--gold); background: rgba(201,169,110,0.05); }
+  .emp-step-num { font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 16px; }
+  .emp-step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 12px; }
+  .emp-step-desc { font-size: 0.62rem; line-height: 1.9; color: rgba(245,242,238,0.4); }
+
+  /* BENEFICIOS */
+  .emp-benefits-section { background: #080808; }
+  .emp-benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 80px; }
+  .emp-benefit { padding: 48px 36px; background: rgba(255,255,255,0.015); border: 1px solid rgba(201,169,110,0.07); transition: all 0.3s; }
+  .emp-benefit:hover { background: rgba(201,169,110,0.03); border-color: rgba(201,169,110,0.18); transform: translateY(-4px); }
+  .emp-benefit-icon { font-size: 1.8rem; margin-bottom: 20px; display: block; }
+  .emp-benefit-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; margin-bottom: 12px; }
+  .emp-benefit-desc { font-size: 0.63rem; line-height: 1.9; color: rgba(245,242,238,0.4); }
+
+  /* TARIFAS */
+  .emp-tarifas { background: linear-gradient(160deg, #0d0c0a 0%, #100e08 100%); }
+  .emp-tarifas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 80px; }
+  .emp-tarifa-card { padding: 40px 32px; border: 1px solid rgba(201,169,110,0.1); background: rgba(255,255,255,0.015); transition: all 0.3s; }
+  .emp-tarifa-card:hover { border-color: rgba(201,169,110,0.3); transform: translateY(-4px); }
+  .emp-tarifa-icon { font-size: 1.6rem; margin-bottom: 16px; display: block; }
+  .emp-tarifa-type { font-size: 0.52rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .emp-tarifa-title { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; margin-bottom: 12px; }
+  .emp-tarifa-desc { font-size: 0.62rem; line-height: 1.9; color: rgba(245,242,238,0.4); }
+
+  /* FORMULARIO EMPRESA */
+  .emp-contact-section { background: #0a0a0a; }
+  .emp-contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: start; }
+  .emp-form-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(201,169,110,0.15); padding: 52px; position: relative; }
+  .emp-form-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold), var(--rose)); }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .emp-hero { padding: 120px 24px 80px; }
+    .emp-hero-inner { grid-template-columns: 1fr; gap: 60px; }
+    .emp-process-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .emp-benefits-grid { grid-template-columns: 1fr; }
+    .emp-tarifas-grid { grid-template-columns: 1fr; }
+    .emp-contact-inner { grid-template-columns: 1fr; gap: 48px; }
+    .emp-catalog-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .emp-process-grid { grid-template-columns: 1fr; }
+    .emp-catalog-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV MOBILE -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nav-mobile-close" onclick="closeNav()">✕</button>
+  <a href="index.html" onclick="closeNav()">Inicio</a>
+  <a href="#proceso" onclick="closeNav()">Cómo funciona</a>
+  <a href="#beneficios" onclick="closeNav()">Beneficios</a>
+  <a href="#contacto" onclick="closeNav()">Solicitar talentos</a>
+  <a href="https://wa.me/573104479013" target="_blank" style="color:var(--gold)">WhatsApp</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="index.html" class="logo">Inspira <span>Models</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="#proceso">Cómo funciona</a></li>
+    <li><a href="#beneficios">Beneficios</a></li>
+    <li><a href="#tarifas">Tipos de campaña</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Solicitar talentos</a>
+  <div class="nav-hamburger" onclick="openNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO EMPRESAS -->
+<section class="emp-hero" id="inicio">
+  <div class="emp-hero-inner">
+    <div>
+      <div class="emp-hero-badge">Portal Empresas · Inspira Models</div>
+      <h1 class="hero-title" style="font-size:clamp(3rem,6vw,6rem)">
+        El talento que<br>tu marca<br><em>necesita.</em>
+      </h1>
+      <p class="hero-desc">Accede al catálogo verificado de Inspira Models. Encuentra el perfil exacto para tu campaña y nosotros gestionamos todo — contrato, logística y pagos incluidos.</p>
+      <div class="hero-actions">
+        <a href="#contacto" class="btn-primary">Solicitar talentos</a>
+        <a href="#proceso" class="btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16"/></svg>
+          Ver cómo funciona
+        </a>
+      </div>
+      <div class="emp-trust-strip">
+        <div class="emp-trust-item"><div class="emp-trust-num">11</div><div class="emp-trust-label">Categorías</div></div>
+        <div class="emp-trust-item"><div class="emp-trust-num">100%</div><div class="emp-trust-label">Privado</div></div>
+        <div class="emp-trust-item"><div class="emp-trust-num">24h</div><div class="emp-trust-label">Respuesta</div></div>
+        <div class="emp-trust-item"><div class="emp-trust-num">✓</div><div class="emp-trust-label">Verificados</div></div>
+      </div>
+    </div>
+    <!-- Demo catálogo -->
+    <div class="emp-card-demo reveal reveal-delay-2">
+      <div class="emp-card-header">
+        <div class="emp-card-header-title">Catálogo de Talentos</div>
+        <div class="emp-card-verified">Verificados ✓</div>
+      </div>
+      <div class="emp-catalog-grid">
+        <div class="emp-model-mini"><div class="emp-model-avatar">🌟</div><div class="emp-model-name">Valentina R.</div><div class="emp-model-type">Comercial</div><div class="emp-model-stats"><span class="emp-model-stat">1.70m</span><span class="emp-model-stat">Disponible</span></div></div>
+        <div class="emp-model-mini"><div class="emp-model-avatar">💫</div><div class="emp-model-name">Isabella M.</div><div class="emp-model-type">Editorial</div><div class="emp-model-stats"><span class="emp-model-stat">1.72m</span><span class="emp-model-stat">Disponible</span></div></div>
+        <div class="emp-model-mini"><div class="emp-model-avatar">✨</div><div class="emp-model-name">Mariana T.</div><div class="emp-model-type">Pasarela</div><div class="emp-model-stats"><span class="emp-model-stat">1.75m</span><span class="emp-model-stat">Disponible</span></div></div>
+        <div class="emp-model-mini"><div class="emp-model-avatar">🎬</div><div class="emp-model-name">Santiago V.</div><div class="emp-model-type">Actor</div><div class="emp-model-stats"><span class="emp-model-stat">1.80m</span><span class="emp-model-stat">Disponible</span></div></div>
+        <div class="emp-model-mini"><div class="emp-model-avatar">💪</div><div class="emp-model-name">Daniela C.</div><div class="emp-model-type">Fitness</div><div class="emp-model-stats"><span class="emp-model-stat">1.68m</span><span class="emp-model-stat">Disponible</span></div></div>
+        <div class="emp-model-mini" style="background:rgba(201,169,110,0.04);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px"><div style="font-size:1.4rem">+</div><div style="font-size:0.48rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold)">Ver catálogo</div></div>
+      </div>
+      <div class="emp-card-footer">
+        <div class="emp-card-count">Acceso al catálogo completo tras registro</div>
+        <a href="#contacto" class="btn-primary" style="font-size:0.55rem;padding:10px 20px">Solicitar acceso</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">Campañas publicitarias</span>
+    <span class="marquee-item">Sesiones editoriales</span>
+    <span class="marquee-item">Desfiles & pasarelas</span>
+    <span class="marquee-item">Contenido digital</span>
+    <span class="marquee-item">Eventos corporativos</span>
+    <span class="marquee-item">Producciones audiovisuales</span>
+    <span class="marquee-item">Embajadoras de marca</span>
+    <span class="marquee-item">Campañas publicitarias</span>
+    <span class="marquee-item">Sesiones editoriales</span>
+    <span class="marquee-item">Desfiles & pasarelas</span>
+    <span class="marquee-item">Contenido digital</span>
+    <span class="marquee-item">Eventos corporativos</span>
+    <span class="marquee-item">Producciones audiovisuales</span>
+    <span class="marquee-item">Embajadoras de marca</span>
+  </div>
+</div>
+
+<!-- PROCESO -->
+<section class="emp-process-section" id="proceso">
+  <div style="text-align:center">
+    <p class="section-label reveal" style="justify-content:center">Proceso simple y seguro</p>
+    <h2 class="section-title reveal reveal-delay-1">Cómo<br><em>funciona</em></h2>
+    <p class="section-text reveal reveal-delay-2" style="max-width:500px;margin:0 auto">Desde que envías tu solicitud hasta que el talento llega a tu producción, Inspira Models maneja todo por ti.</p>
+  </div>
+  <div class="emp-process-grid">
+    <div class="emp-step reveal">
+      <div class="emp-step-num">01</div>
+      <div class="emp-step-icon">📋</div>
+      <div class="emp-step-title">Envías tu solicitud</div>
+      <div class="emp-step-desc">Defines tu campaña, presupuesto aproximado, tipo de talento y fechas. Sin compromiso inicial.</div>
+    </div>
+    <div class="emp-step reveal reveal-delay-1">
+      <div class="emp-step-num">02</div>
+      <div class="emp-step-icon">🔍</div>
+      <div class="emp-step-title">Revisamos y buscamos</div>
+      <div class="emp-step-desc">Nuestro equipo revisa tu solicitud y selecciona los perfiles que mejor se adaptan a tus necesidades.</div>
+    </div>
+    <div class="emp-step reveal reveal-delay-2">
+      <div class="emp-step-num">03</div>
+      <div class="emp-step-icon">📤</div>
+      <div class="emp-step-title">Te presentamos opciones</div>
+      <div class="emp-step-desc">Recibes una selección curada de perfiles verificados con portafolio completo. Tú eliges.</div>
+    </div>
+    <div class="emp-step reveal reveal-delay-3">
+      <div class="emp-step-num">04</div>
+      <div class="emp-step-icon">✅</div>
+      <div class="emp-step-title">Contrato y producción</div>
+      <div class="emp-step-desc">Formalizamos todo digitalmente — contrato, cesión de imagen y coordinación logística de la producción.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="emp-benefits-section" id="beneficios">
+  <div style="text-align:center">
+    <p class="section-label reveal" style="justify-content:center">Por qué elegirnos</p>
+    <h2 class="section-title reveal reveal-delay-1">Tu marca merece<br><em>lo mejor</em></h2>
+  </div>
+  <div class="emp-benefits-grid">
+    <div class="emp-benefit reveal"><span class="emp-benefit-icon">🔐</span><div class="emp-benefit-title">Total privacidad y control</div><div class="emp-benefit-desc">Las marcas no tienen contacto directo con los modelos. Todo pasa por Inspira Models. Tus negociaciones y presupuestos son completamente privados.</div></div>
+    <div class="emp-benefit reveal reveal-delay-1"><span class="emp-benefit-icon">✅</span><div class="emp-benefit-title">Talentos verificados y formados</div><div class="emp-benefit-desc">Cada modelo de nuestra agencia ha completado formación académica. No son perfiles de internet — son talentos con historia, técnica y reputación verificada.</div></div>
+    <div class="emp-benefit reveal reveal-delay-2"><span class="emp-benefit-icon">⚡</span><div class="emp-benefit-title">Respuesta en menos de 24h</div><div class="emp-benefit-desc">Procesamos tu solicitud y te presentamos opciones el mismo día o el siguiente. Entendemos que las producciones tienen plazos.</div></div>
+    <div class="emp-benefit reveal"><span class="emp-benefit-icon">📋</span><div class="emp-benefit-title">Contratos digitales incluidos</div><div class="emp-benefit-desc">Generamos automáticamente el contrato, la cesión de imagen y los permisos necesarios. Todo legal, todo digital, sin trámites adicionales.</div></div>
+    <div class="emp-benefit reveal reveal-delay-1"><span class="emp-benefit-icon">🎯</span><div class="emp-benefit-title">Búsqueda precisa</div><div class="emp-benefit-desc">Filtramos por edad, estatura, tipo de modelaje, ciudad, disponibilidad, color de cabello y más. Encuentras exactamente lo que tu campaña necesita.</div></div>
+    <div class="emp-benefit reveal reveal-delay-2"><span class="emp-benefit-icon">⭐</span><div class="emp-benefit-title">Historial y reputación real</div><div class="emp-benefit-desc">Cada modelo tiene calificaciones, historial de campañas y referencias verificadas de trabajos anteriores. Sabes con quién estás trabajando.</div></div>
+  </div>
+</section>
+
+<!-- TIPOS DE CAMPAÑA -->
+<section class="emp-tarifas" id="tarifas">
+  <div style="text-align:center;margin-bottom:0">
+    <p class="section-label reveal" style="justify-content:center">¿Para qué nos contratan?</p>
+    <h2 class="section-title reveal reveal-delay-1">Tipos de<br><em>campaña</em></h2>
+    <p class="section-text reveal reveal-delay-2" style="max-width:500px;margin:0 auto">Trabajamos con todo tipo de marcas, desde boutiques locales hasta grandes empresas. Cada producción es única.</p>
+  </div>
+  <div class="emp-tarifas-grid">
+    <div class="emp-tarifa-card reveal"><span class="emp-tarifa-icon">📸</span><div class="emp-tarifa-type">Fotografía</div><div class="emp-tarifa-title">Sesión fotográfica editorial o comercial</div><div class="emp-tarifa-desc">Catálogos de temporada, lookbooks, publicidad impresa, contenido para e-commerce o campañas en medios digitales y redes sociales.</div></div>
+    <div class="emp-tarifa-card reveal reveal-delay-1"><span class="emp-tarifa-icon">🎬</span><div class="emp-tarifa-type">Audiovisual</div><div class="emp-tarifa-title">Comerciales y producciones de video</div><div class="emp-tarifa-desc">Spots publicitarios, videos para redes, contenido de marca, reels de producto, testimoniales y producciones para plataformas digitales.</div></div>
+    <div class="emp-tarifa-card reveal reveal-delay-2"><span class="emp-tarifa-icon">👠</span><div class="emp-tarifa-type">Eventos</div><div class="emp-tarifa-title">Desfiles, pasarelas y eventos corporativos</div><div class="emp-tarifa-desc">Presentaciones de colecciones, lanzamientos de producto, eventos de marca, ferias, expos y cualquier tipo de presentación en vivo.</div></div>
+    <div class="emp-tarifa-card reveal"><span class="emp-tarifa-icon">📱</span><div class="emp-tarifa-type">Digital</div><div class="emp-tarifa-title">Contenido para redes e influencer marketing</div><div class="emp-tarifa-desc">Colaboraciones con influencers certificados, creación de contenido nativo para Instagram, TikTok y otras plataformas digitales.</div></div>
+    <div class="emp-tarifa-card reveal reveal-delay-1"><span class="emp-tarifa-icon">🌟</span><div class="emp-tarifa-type">Imagen de marca</div><div class="emp-tarifa-title">Embajadora o imagen oficial de marca</div><div class="emp-tarifa-desc">Representación continua de tu marca, presencia en eventos, cara oficial de campaña o imagen corporativa a largo plazo.</div></div>
+    <div class="emp-tarifa-card reveal reveal-delay-2"><span class="emp-tarifa-icon">🎭</span><div class="emp-tarifa-type">Actuación</div><div class="emp-tarifa-title">Actores para comerciales y producciones</div><div class="emp-tarifa-desc">Actores y actrices formados para comerciales de TV, series de marca, sketches institucionales y producciones audiovisuales de cualquier escala.</div></div>
+  </div>
+</section>
+
+<!-- CONTACTO / FORMULARIO -->
+<section class="emp-contact-section" id="contacto">
+  <div class="emp-contact-inner">
+    <div>
+      <p class="section-label reveal">Solicitar talentos</p>
+      <h2 class="section-title reveal reveal-delay-1">Comencemos<br><em>juntos</em></h2>
+      <p class="section-text reveal reveal-delay-2">Completa el formulario o escríbenos directamente por WhatsApp. Revisamos tu solicitud y te contactamos en menos de 24 horas con una selección de perfiles ideales para tu campaña.</p>
+      <div class="marcas-beneficios" style="margin-top:40px">
+        <li class="reveal reveal-delay-1"><span>📍</span><div><strong style="color:var(--white);display:block;margin-bottom:4px">Ubicación</strong>Cr 49 Cl 50 #41 Local 214, Medellín, Colombia</div></li>
+        <li class="reveal reveal-delay-2"><span>📱</span><div><strong style="color:var(--white);display:block;margin-bottom:4px">WhatsApp directo</strong><a href="https://wa.me/573104479013" target="_blank" style="color:var(--gold);text-decoration:none">+57 310 447 9013</a></div></li>
+        <li class="reveal reveal-delay-3"><span>⏱</span><div><strong style="color:var(--white);display:block;margin-bottom:4px">Tiempo de respuesta</strong>Menos de 24 horas hábiles</div></li>
+      </div>
+      <div style="margin-top:32px">
+        <a href="https://wa.me/573104479013?text=Hola%20Inspira%20Models!%20Soy%20una%20empresa%20y%20quiero%20solicitar%20talentos%20para%20una%20campa%C3%B1a." target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:12px">
+          💬 Escribir por WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="emp-form-box">
+        <div id="empFormSuccess" class="form-success">
+          <span class="form-success-icon">✦</span>
+          <div class="form-success-title">Solicitud enviada</div>
+          <p class="form-success-text">Recibimos tu solicitud. En menos de 24 horas nuestro equipo se comunicará contigo con una selección de talentos para tu campaña.</p>
+          <a href="index.html" class="btn-primary" style="margin-top:24px;display:inline-block">Ir al inicio</a>
+        </div>
+        <div id="empFormWrap">
+          <div class="marcas-form-title">Solicitud de talentos</div>
+          <p class="marcas-form-sub">Sin compromiso — te respondemos en 24 horas</p>
+          <form onsubmit="submitEmpresaForm(event)">
+            <div class="form-row">
+              <div class="form-group"><label>Empresa / Marca</label><input type="text" id="empEmpresa" placeholder="Nombre de tu empresa" required></div>
+              <div class="form-group"><label>Persona de contacto</label><input type="text" id="empContacto" placeholder="Tu nombre completo" required></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>WhatsApp</label><input type="tel" id="empWpp" placeholder="+57 310 000 0000" required></div>
+              <div class="form-group"><label>Email (opcional)</label><input type="email" id="empEmail" placeholder="empresa@correo.com"></div>
+            </div>
+            <div class="form-group">
+              <label>Tipo de campaña</label>
+              <select id="empTipo" required>
+                <option value="" disabled selected>Selecciona</option>
+                <option>Sesión fotográfica comercial</option>
+                <option>Sesión fotográfica editorial</option>
+                <option>Comercial / video publicitario</option>
+                <option>Desfile o pasarela</option>
+                <option>Contenido para redes sociales</option>
+                <option>Evento corporativo</option>
+                <option>Embajadora / imagen de marca</option>
+                <option>Actuación / producción audiovisual</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label>N° de talentos</label><input type="number" id="empCantidad" placeholder="Ej: 3" min="1"></div>
+              <div class="form-group"><label>Fecha estimada</label><input type="text" id="empFecha" placeholder="Ej: Junio 2026"></div>
+            </div>
+            <div class="form-group"><label>Presupuesto aproximado (opcional)</label><input type="text" id="empPresupuesto" placeholder="Ej: $500.000 – $2.000.000 COP"></div>
+            <div class="form-group"><label>Detalles adicionales</label><textarea rows="3" id="empDetalle" placeholder="Tipo de talento, medidas, experiencia requerida, locación..."></textarea></div>
+            <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:'Montserrat',sans-serif">Enviar solicitud</button>
+            <p style="font-size:0.55rem;color:rgba(245,242,238,0.25);text-align:center;margin-top:16px;line-height:1.8">Tus datos son confidenciales. No compartimos información con terceros.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Inspira <span>Models</span></a>
+      <p>Academia profesional, agencia de talentos y plataforma de contratación para modelos en Colombia. Potenciamos carreras, conectamos talentos.</p>
+      <p style="margin-bottom:8px">📍 Cr 49 Cl 50 #41 Local 214, Medellín</p>
+      <p><a href="https://wa.me/573104479013" target="_blank" style="color:var(--gold);text-decoration:none">📱 +57 310 447 9013</a></p>
+      <div class="social-links" style="margin-top:20px">
+        <a href="#" class="social-link">📸</a>
+        <a href="#" class="social-link">📘</a>
+        <a href="#" class="social-link">▶️</a>
+        <a href="#" class="social-link">💬</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Para Empresas</h4>
+      <ul>
+        <li><a href="#proceso">Cómo funciona</a></li>
+        <li><a href="#beneficios">Beneficios</a></li>
+        <li><a href="#tarifas">Tipos de campaña</a></li>
+        <li><a href="#contacto">Solicitar talentos</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Academia</h4>
+      <ul>
+        <li><a href="index.html#categorias">Categorías</a></li>
+        <li><a href="index.html#plataforma">Plataforma</a></li>
+        <li><a href="index.html#academico">Programa</a></li>
+        <li><a href="index.html#precios">Precios</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal & Soporte</h4>
+      <ul>
+        <li><a href="#">Términos & condiciones</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Protección de datos</a></li>
+        <li><a href="https://wa.me/573104479013" target="_blank">Soporte WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Inspira Models · Cr 49 Cl 50 #41 Local 214, Medellín · <a href="https://wa.me/573104479013" target="_blank">+57 310 447 9013</a></p>
+    <p>Diseñado con ♦ para potenciar talentos</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/573104479013?text=Hola%20Inspira%20Models!%20Soy%20una%20empresa%20y%20quiero%20solicitar%20talentos." class="whatsapp-btn" target="_blank" title="WhatsApp Empresas">💬</a>
+
+<script src="scripts.js"></script>
+<script>
+  function submitEmpresaForm(e) {
+    e.preventDefault();
+    const empresa   = document.getElementById('empEmpresa').value;
+    const contacto  = document.getElementById('empContacto').value;
+    const wpp       = document.getElementById('empWpp').value;
+    const tipo      = document.getElementById('empTipo').value;
+    const cantidad  = document.getElementById('empCantidad').value || 'No especificado';
+    const fecha     = document.getElementById('empFecha').value || 'No especificada';
+    const presup    = document.getElementById('empPresupuesto').value || 'No especificado';
+    const detalle   = document.getElementById('empDetalle').value || '';
+    const msg = encodeURIComponent(
+      `Hola Inspira Models! Solicito talentos para una campaña.\n\n` +
+      `Empresa: ${empresa}\nContacto: ${contacto}\nWhatsApp: ${wpp}\n` +
+      `Tipo de campaña: ${tipo}\nN° de talentos: ${cantidad}\n` +
+      `Fecha: ${fecha}\nPresupuesto: ${presup}\n` +
+      (detalle ? `Detalles: ${detalle}\n` : '') +
+      `\nPor favor envíenme opciones de talentos disponibles.`
+    );
+    document.getElementById('empFormWrap').style.display   = 'none';
+    document.getElementById('empFormSuccess').style.display = 'block';
+    setTimeout(() => window.open(`https://wa.me/573104479013?text=${msg}`, '_blank'), 800);
+  }
+</script>
+</body>
+</html>
