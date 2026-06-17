@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal de Empresas · Inspira Models</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --gold: #c9a96e; --bg: #080807; --card: #111110; --border: rgba(201,169,110,0.15); --text: #f5f2ee; --muted: rgba(245,242,238,0.45); --green: #6be06b; --red: #e06b6b; --yellow: #ffc832; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+
+  #loginScreen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+  .login-box { background: var(--card); border: 1px solid var(--border); padding: 48px 40px; width: 100%; max-width: 400px; text-align: center; }
+  .login-logo { font-size: 1.6rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .login-logo span { color: var(--gold); }
+  .login-sub { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 36px; }
+  .login-input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text); font-size: 0.9rem; padding: 14px 16px; outline: none; margin-bottom: 16px; font-family: inherit; }
+  .login-btn { width: 100%; padding: 14px; background: var(--gold); color: #080807; border: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: inherit; }
+  .login-error { color: var(--red); font-size: 0.8rem; margin-top: 12px; display: none; }
+  .login-back { display: inline-block; margin-top: 20px; font-size: 0.65rem; color: var(--muted); text-decoration: none; }
+  .login-back:hover { color: var(--gold); }
+
+  .top-nav { background: rgba(10,10,9,0.97); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  .top-logo { font-size: 1.1rem; font-weight: 300; }
+  .top-logo span { color: var(--gold); }
+  .logout-btn { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 0.65rem; padding: 6px 14px; cursor: pointer; font-family: inherit; text-transform: uppercase; }
+  .logout-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .page-body { max-width: 1000px; margin: 0 auto; padding: 40px 24px 80px; }
+  .dash-greeting { font-size: 1.5rem; font-weight: 300; margin-bottom: 32px; }
+  .dash-greeting span { color: var(--gold); }
+
+  .tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 28px; flex-wrap: wrap; }
+  .tab-btn { background: none; border: none; border-bottom: 2px solid transparent; color: var(--muted); font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 12px 18px; cursor: pointer; font-family: inherit; margin-bottom: -1px; }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .fg { margin-bottom: 14px; }
+  .fg label { display: block; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .fg input, .fg select, .fg textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text); font-size: 0.8rem; padding: 10px 12px; outline: none; font-family: inherit; }
+  .fg textarea { min-height: 70px; resize: vertical; }
+
+  .submit-btn { padding: 12px 22px; background: var(--gold); color: #080807; border: none; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-family: inherit; }
+  .submit-btn.block { width: 100%; }
+  .form-card { background: var(--card); border: 1px solid var(--border); padding: 26px; margin-bottom: 24px; }
+  .form-card-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .form-msg { font-size: 0.75rem; margin-top: 12px; display: none; color: var(--green); }
+
+  .item-card { border: 1px solid var(--border); padding: 16px 18px; margin-bottom: 10px; }
+  .item-title { font-size: 0.8rem; color: var(--gold); margin-bottom: 6px; }
+  .item-desc { font-size: 0.75rem; color: rgba(245,242,238,0.6); line-height: 1.6; }
+  .item-meta { font-size: 0.6rem; color: var(--muted); margin-top: 8px; }
+  .badge-pendiente { background: rgba(255,200,50,0.12); color: var(--yellow); font-size: 0.6rem; padding: 3px 8px; border-radius: 3px; }
+  .badge-aceptado  { background: rgba(107,224,107,0.12); color: var(--green); font-size: 0.6rem; padding: 3px 8px; border-radius: 3px; }
+  .badge-rechazado { background: rgba(224,107,107,0.12); color: var(--red); font-size: 0.6rem; padding: 3px 8px; border-radius: 3px; }
+  .producto-mini { display: flex; gap: 14px; align-items: center; border: 1px solid var(--border); padding: 12px 16px; margin-bottom: 8px; }
+  .producto-mini img { width: 48px; height: 48px; object-fit: cover; }
+  .empty-msg { color: var(--muted); font-size: 0.8rem; padding: 4px 0 16px; }
+  .section-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; border-left: 2px solid var(--gold); padding-left: 10px; }
+</style>
+</head>
+<body>
+
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">Inspira <span>Models</span></div>
+    <div class="login-sub">Portal de Empresas</div>
+    <input class="login-input" type="text" id="loginUsuario" placeholder="Usuario">
+    <input class="login-input" type="password" id="loginPass" placeholder="Contraseña" onkeydown="if(event.key==='Enter') doLogin()">
+    <button class="login-btn" onclick="doLogin()">Ingresar</button>
+    <div class="login-error" id="loginError">Usuario o contraseña incorrectos</div>
+    <a href="empresas.html" class="login-back">← Volver</a>
+  </div>
+</div>
+
+<div id="dashboard" style="display:none">
+  <nav class="top-nav">
+    <div class="top-logo">Inspira <span>Models</span></div>
+    <button class="logout-btn" onclick="doLogout()">Salir</button>
+  </nav>
+  <div class="page-body">
+    <div class="dash-greeting">Hola, <span id="dashNombre"></span></div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('promos', this)">Promociones</button>
+      <button class="tab-btn" onclick="switchTab('procesos', this)">Mis procesos</button>
+      <button class="tab-btn" onclick="switchTab('compartir', this)">Reseña / Historia</button>
+    </div>
+
+    <div class="tab-panel active" id="panel-promos">
+      <div class="section-title">Tienda y promociones</div>
+      <div id="promosList"></div>
+    </div>
+
+    <div class="tab-panel" id="panel-procesos">
+      <div class="section-title">Cotizaciones y solicitudes</div>
+      <div id="cotizacionesList"></div>
+    </div>
+
+    <div class="tab-panel" id="panel-compartir">
+      <div class="form-card">
+        <div class="form-card-title">Deja tu reseña</div>
+        <div class="fg"><label>Calificación</label>
+          <select id="resCalificacion"><option value="5">★★★★★</option><option value="4">★★★★</option><option value="3">★★★</option></select>
+        </div>
+        <div class="fg"><label>Comentario</label><textarea id="resComentario"></textarea></div>
+        <button class="submit-btn" onclick="enviarResena()">Publicar reseña</button>
+        <div class="form-msg" id="resOk">✓ Reseña enviada, gracias por compartir</div>
+      </div>
+      <div class="form-card">
+        <div class="form-card-title">Comparte tu experiencia</div>
+        <div class="fg"><label>Tu historia</label><textarea id="histTexto"></textarea></div>
+        <button class="submit-btn" onclick="enviarHistoria()">Compartir</button>
+        <div class="form-msg" id="histOk">✓ Historia enviada, gracias por compartir</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="empresa.js"></script>
+</body>
+</html>

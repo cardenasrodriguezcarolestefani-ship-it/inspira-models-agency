@@ -25,6 +25,9 @@
   <a href="#plataforma" onclick="closeNav()">Plataforma</a>
   <a href="#academico" onclick="closeNav()">Académico</a>
   <a href="empresas.html" onclick="closeNav()">Para Marcas</a>
+  <a href="aprendiz.html" onclick="closeNav()">Portal Aprendiz</a>
+  <a href="profesor.html" onclick="closeNav()">Portal Profesores</a>
+  <a href="empresa.html" onclick="closeNav()">Portal Empresas</a>
   <a href="#" onclick="closeNav(); openModal();" style="color:var(--gold)">Inscríbete</a>
 </div>
 
@@ -37,6 +40,9 @@
     <li><a href="#precios">Precios</a></li>
     <li><a href="#plataforma">Plataforma</a></li>
     <li><a href="empresas.html">Para Marcas</a></li>
+    <li><a href="aprendiz.html">Portal Aprendiz</a></li>
+    <li><a href="profesor.html">Portal Profesores</a></li>
+    <li><a href="empresa.html">Portal Empresas</a></li>
   </ul>
   <a href="#" class="nav-cta" onclick="openModal(); return false;">Inscríbete</a>
   <div class="nav-hamburger" onclick="openNav()">
@@ -410,6 +416,142 @@
   </div>
 </section>
 
+<!-- RESEÑAS DE LA COMUNIDAD -->
+<section class="resenas-section" id="resenas">
+  <div style="text-align:center">
+    <p class="section-label reveal" style="justify-content:center">Reseñas verificadas</p>
+    <h2 class="section-title reveal reveal-delay-1">Voces de nuestra<br><em>comunidad</em></h2>
+    <p class="section-text reveal reveal-delay-2" style="max-width:560px;margin:0 auto 10px">Reseñas reales de modelos con historial verificado en Inspira Models.</p>
+  </div>
+  <div class="content-grid" id="resenasGrid"></div>
+</section>
+
+<!-- HISTORIAS QUE INSPIRAN -->
+<section class="historias-section" id="historias">
+  <div style="text-align:center">
+    <p class="section-label reveal" style="justify-content:center">Comunidad Inspira</p>
+    <h2 class="section-title reveal reveal-delay-1">Historias que<br><em>inspiran</em></h2>
+  </div>
+  <div class="content-grid" id="historiasGrid"></div>
+</section>
+
+<!-- NOTICIERO INSPIRA -->
+<section class="noticiero-section" id="noticiero">
+  <div style="text-align:center">
+    <p class="section-label reveal" style="justify-content:center">Al día</p>
+    <h2 class="section-title reveal reveal-delay-1">Noticiero<br><em>Inspira</em></h2>
+  </div>
+  <div class="content-grid" id="noticieroGrid"></div>
+</section>
+
+<!-- TIENDA OFICIAL -->
+<section class="tienda-section" id="tienda">
+  <div style="text-align:center">
+    <p class="section-label reveal" style="justify-content:center">Tienda oficial</p>
+    <h2 class="section-title reveal reveal-delay-1">Inspira<br><em>Merch</em></h2>
+    <p class="section-text reveal reveal-delay-2" style="max-width:560px;margin:0 auto 10px">Pide por WhatsApp y recíbelo donde estés.</p>
+  </div>
+  <div class="content-grid" id="tiendaGrid"></div>
+</section>
+
+<!-- CATÁLOGO DE MODELOS -->
+<section class="noticiero-section" id="catalogo">
+  <div style="text-align:center;margin-bottom:50px">
+    <p class="section-label reveal" style="justify-content:center">Talento verificado</p>
+    <h2 class="section-title reveal reveal-delay-1">Catálogo de<br><em>Modelos</em></h2>
+    <p class="section-text reveal reveal-delay-2" style="max-width:560px;margin:0 auto">Modelos activas que han autorizado aparecer públicamente.</p>
+  </div>
+  <div class="content-grid" id="catalogoGrid"></div>
+</section>
+
+<!-- EMPRENDIMIENTOS INSPIRA -->
+<section class="tienda-section" id="emprendimientos">
+  <div style="text-align:center;margin-bottom:50px">
+    <p class="section-label reveal" style="justify-content:center">Comunidad emprendedora</p>
+    <h2 class="section-title reveal reveal-delay-1">Emprendimientos<br><em>Inspira</em></h2>
+    <p class="section-text reveal reveal-delay-2" style="max-width:560px;margin:0 auto">Negocios de nuestra comunidad. ¿Tienes uno? Solicita tu espacio.</p>
+  </div>
+  <div class="content-grid" id="emprendimientosGrid"></div>
+  <div style="text-align:center;margin-top:40px">
+    <button class="btn-outline-gold" onclick="document.getElementById('empExternoModal').style.display='flex'" style="border:1px solid var(--gold);color:var(--gold);background:none;padding:14px 28px;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;font-family:'Montserrat',sans-serif">¿Tienes un emprendimiento? Solicita tu espacio</button>
+    <p style="margin-top:16px"><a href="emprendimiento.html" style="font-size:0.65rem;color:rgba(245,242,238,0.4);text-decoration:underline">Ya tengo cuenta, iniciar sesión</a></p>
+  </div>
+</section>
+
+<!-- MODAL SOLICITUD EMPRENDIMIENTO EXTERNO -->
+<div id="empExternoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:600;align-items:center;justify-content:center;padding:20px">
+  <div style="background:#111;border:1px solid rgba(201,169,110,0.2);max-width:480px;width:100%;padding:40px;max-height:90vh;overflow-y:auto;position:relative">
+    <button onclick="document.getElementById('empExternoModal').style.display='none'" style="position:absolute;top:16px;right:16px;background:none;border:1px solid rgba(201,169,110,0.2);color:#fff;width:32px;height:32px;cursor:pointer">✕</button>
+    <h3 class="modal-title" style="margin-bottom:24px">Solicita tu<br><em>espacio</em></h3>
+    <div id="empExternoSuccess" class="form-success">
+      <span class="form-success-icon">✦</span>
+      <div class="form-success-title">Solicitud enviada</div>
+      <p class="form-success-text">La revisaremos y, si es aprobada, te enviaremos tus credenciales por correo.</p>
+    </div>
+    <form id="empExternoForm" onsubmit="submitEmprendimientoExterno(event)">
+      <div class="form-group"><label>Nombre del negocio</label><input type="text" id="extNombreNegocio" required></div>
+      <div class="form-group"><label>Categoría</label><input type="text" id="extCategoria" placeholder="Ej: Belleza, accesorios..."></div>
+      <div class="form-group"><label>Descripción</label><textarea rows="2" id="extDescripcion"></textarea></div>
+      <div class="form-group"><label>Correo</label><input type="email" id="extEmail" required></div>
+      <div class="form-group"><label>Contacto (WhatsApp/Instagram)</label><input type="text" id="extContacto"></div>
+      <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:'Montserrat',sans-serif">Enviar solicitud</button>
+    </form>
+  </div>
+</div>
+
+<!-- CURSOS Y COTIZACIONES -->
+<section class="resenas-section" id="cotizaciones">
+  <div style="text-align:center;margin-bottom:50px">
+    <p class="section-label reveal" style="justify-content:center">Cursos a medida</p>
+    <h2 class="section-title reveal reveal-delay-1">Solicita tu<br><em>cotización</em></h2>
+    <p class="section-text reveal reveal-delay-2" style="max-width:560px;margin:0 auto">Cursos personalizados, protocolo, glamour y más — para empresas, colegios o grupos. Te enviamos un radicado para seguir tu proceso.</p>
+  </div>
+  <div style="max-width:680px;margin:0 auto">
+    <div id="cotizacionSuccess" class="form-success">
+      <span class="form-success-icon">✦</span>
+      <div class="form-success-title">Solicitud enviada</div>
+      <p class="form-success-text">Tu número de radicado es: <strong style="color:var(--gold)" id="cotizacionRadicado"></strong><br>Te lo enviamos también por correo. Guárdalo para consultar tu proceso en "Revisar Procesos".</p>
+    </div>
+    <form id="cotizacionForm" onsubmit="submitCotizacion(event)">
+      <div class="form-row">
+        <div class="form-group"><label>Nombre completo</label><input type="text" id="cotNombre" required></div>
+        <div class="form-group"><label>Correo</label><input type="email" id="cotEmail" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>WhatsApp</label><input type="tel" id="cotTelefono" required></div>
+        <div class="form-group"><label>Curso de interés</label><input type="text" id="cotCurso" placeholder="Ej: Protocolo y etiqueta" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Fecha deseada</label><input type="date" id="cotFecha"></div>
+        <div class="form-group"><label>Lugar</label><input type="text" id="cotLugar" placeholder="Ciudad / dirección"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Modalidad</label>
+          <select id="cotModalidad"><option>Presencial</option><option>Virtual</option></select>
+        </div>
+        <div class="form-group"><label>N° de personas</label><input type="number" id="cotPersonas" min="1"></div>
+      </div>
+      <div class="form-group"><label>Horas estimadas</label><input type="number" id="cotHoras" min="1"></div>
+      <div class="form-group"><label>Observaciones</label><textarea rows="2" id="cotObservaciones"></textarea></div>
+      <button type="submit" id="cotSubmitBtn" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:'Montserrat',sans-serif">Enviar solicitud</button>
+    </form>
+  </div>
+</section>
+
+<!-- REVISAR PROCESOS -->
+<section class="historias-section" id="procesos">
+  <div style="text-align:center;margin-bottom:40px">
+    <p class="section-label reveal" style="justify-content:center">Seguimiento</p>
+    <h2 class="section-title reveal reveal-delay-1">Revisar mi<br><em>proceso</em></h2>
+    <p class="section-text reveal reveal-delay-2" style="max-width:480px;margin:0 auto">Ingresa tu número de radicado para ver el estado de tu cotización.</p>
+  </div>
+  <div style="max-width:480px;margin:0 auto;display:flex;gap:10px">
+    <input type="text" id="radicadoInput" placeholder="Ej: INS-260616-482" class="form-group" style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(201,169,110,0.2);color:var(--white);padding:14px 16px;font-family:inherit">
+    <button onclick="consultarProceso()" class="btn-primary" style="border:none;cursor:pointer;font-family:'Montserrat',sans-serif">Buscar</button>
+  </div>
+  <div id="radicadoResultado" style="max-width:480px;margin:24px auto 0;display:none;background:rgba(255,255,255,0.02);border:1px solid rgba(201,169,110,0.1);padding:24px"></div>
+</section>
+
 <!-- PARA MARCAS -->
 <section class="marcas-section" id="marcas">
   <div class="marcas-inner">
@@ -431,14 +573,14 @@
         <div id="marcasFormWrap">
           <div class="marcas-form-title">Solicitar talento</div>
           <p class="marcas-form-sub">Cuéntanos sobre tu campaña — sin compromiso</p>
-          <form onsubmit="submitMarcasForm(event)">
+          <form id="marcasForm" onsubmit="submitMarcasForm(event)">
             <div class="form-row">
-              <div class="form-group"><label>Empresa</label><input type="text" placeholder="Nombre de tu empresa" required></div>
-              <div class="form-group"><label>Contacto</label><input type="text" placeholder="Tu nombre completo" required></div>
+              <div class="form-group"><label>Empresa</label><input id="marcasEmpresa" type="text" placeholder="Nombre de tu empresa" required></div>
+              <div class="form-group"><label>Contacto</label><input id="marcasContacto" type="text" placeholder="Tu nombre completo" required></div>
             </div>
-            <div class="form-group"><label>WhatsApp / Email</label><input type="text" placeholder="+57 310 447 9013" required></div>
-            <div class="form-group"><label>Tipo de campaña</label><select required><option value="" disabled selected>Selecciona</option><option>Campaña publicitaria</option><option>Sesión fotográfica editorial</option><option>Desfile / pasarela</option><option>Contenido digital / redes</option><option>Evento corporativo</option><option>Producción audiovisual</option><option>Otro</option></select></div>
-            <div class="form-group"><label>¿Qué necesitas? (opcional)</label><textarea rows="3" placeholder="Número de modelos, fechas, presupuesto..."></textarea></div>
+            <div class="form-group"><label>WhatsApp / Email</label><input id="marcasInfo" type="text" placeholder="+57 310 447 9013" required></div>
+            <div class="form-group"><label>Tipo de campaña</label><select id="marcasTipo" required><option value="" disabled selected>Selecciona</option><option>Campaña publicitaria</option><option>Sesión fotográfica editorial</option><option>Desfile / pasarela</option><option>Contenido digital / redes</option><option>Evento corporativo</option><option>Producción audiovisual</option><option>Otro</option></select></div>
+            <div class="form-group"><label>¿Qué necesitas? (opcional)</label><textarea id="marcasMensaje" rows="3" placeholder="Número de modelos, fechas, presupuesto..."></textarea></div>
             <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:'Montserrat',sans-serif">Enviar solicitud</button>
           </form>
         </div>
@@ -523,31 +665,121 @@
     <div class="modal-body">
       <div id="modalSuccess" class="form-success">
         <span class="form-success-icon">✦</span>
-        <div class="form-success-title">¡Bienvenido a Inspira!</div>
-        <p class="form-success-text">Recibimos tu solicitud. En menos de 24 horas nuestro equipo se comunicará contigo por WhatsApp para completar el proceso.</p>
+        <div class="form-success-title">¡Solicitud enviada!</div>
+        <p class="form-success-text">Recibimos tu solicitud con tus fotos. Nuestro equipo revisará tu perfil en las próximas 24–48 horas y recibirás un correo electrónico con la respuesta.</p>
         <a href="#" onclick="closeModal(); return false;" class="btn-primary" style="margin-top:24px;display:inline-block">Volver al inicio</a>
       </div>
       <div id="modalFormWrap">
-        <div class="modal-type-selector">
-          <button class="type-btn active" onclick="selectType('modelo', this)"><span class="type-icon">🌟</span>Soy Modelo</button>
-          <button class="type-btn" onclick="selectType('padre', this)"><span class="type-icon">👨‍👧</span>Soy Padre/Tutor</button>
-        </div>
         <form id="inscripcionForm" onsubmit="submitInscripcion(event)">
+          <div class="form-group"><label>Nombre completo</label><input type="text" id="inscNombre" placeholder="Nombre completo" required></div>
           <div class="form-row">
-            <div class="form-group"><label>Nombre</label><input type="text" id="inscNombre" placeholder="Nombre completo" required></div>
-            <div class="form-group"><label>Edad</label><input type="number" id="inscEdad" placeholder="Ej: 22" min="4" max="60" required></div>
+            <div class="form-group"><label>Fecha de nacimiento</label><input type="date" id="inscFechaNac" required onchange="calcularEdad()"></div>
+            <div class="form-group"><label>N° de documento</label><input type="text" id="inscDocumento" placeholder="Cédula / T.I. / R.C." required></div>
           </div>
+          <div class="edad-info" id="edadInfo" style="display:none"></div>
+          <div class="form-group"><label>Correo electrónico</label><input type="email" id="inscEmail" placeholder="tucorreo@email.com" required></div>
           <div class="form-group"><label>WhatsApp</label><input type="tel" id="inscWpp" placeholder="+57 300 000 0000" required></div>
           <div class="form-group"><label>Ciudad</label><input type="text" id="inscCiudad" placeholder="Medellín, Bogotá..." required></div>
-          <div class="form-group"><label>Categoría de interés</label><select id="inscCategoria" required><option value="" disabled selected>Selecciona</option><option>Comercial</option><option>Editorial</option><option>Pasarela</option><option>Alta Costura</option><option>Fitness</option><option>Actor / Actriz</option><option>Influencer</option><option>Reina & Imagen</option><option>Modelo Infantil</option><option>No sé aún / Explorar</option></select></div>
-          <div class="form-group"><label>¿Cómo nos conociste?</label><select><option value="" disabled selected>Selecciona</option><option>Instagram</option><option>TikTok</option><option>Facebook</option><option>Recomendación</option><option>Google</option><option>Evento o casting</option><option>Otro</option></select></div>
-          <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;margin-top:8px">Enviar inscripción</button>
-          <p style="font-size:0.55rem;color:rgba(245,242,238,0.3);text-align:center;margin-top:16px;line-height:1.8">Al enviar aceptas nuestros términos y política de privacidad.</p>
+
+          <!-- HORARIO -->
+          <div class="form-group">
+            <label>Horario de clase preferido</label>
+            <div class="toggle-row">
+              <button type="button" class="toggle-btn active" id="horFin" onclick="selectHorarioTipo('finde', this)">Fin de semana</button>
+              <button type="button" class="toggle-btn" id="horSemana" onclick="selectHorarioTipo('semana', this)">Entre semana</button>
+            </div>
+          </div>
+          <div id="horarioFindeWrap" class="form-group">
+            <label>¿Sábado o domingo? (10:00am – 3:00pm · 5 horas)</label>
+            <select id="horarioFindeDia">
+              <option value="Sábado 10:00am-3:00pm">Sábado</option>
+              <option value="Domingo 10:00am-3:00pm">Domingo</option>
+            </select>
+          </div>
+          <div id="horarioSemanaWrap" style="display:none">
+            <div class="form-row">
+              <div class="form-group"><label>Día</label>
+                <select id="horarioSemanaDia">
+                  <option>Lunes</option><option>Martes</option><option>Miércoles</option><option>Jueves</option><option>Viernes</option>
+                </select>
+              </div>
+              <div class="form-group"><label>Jornada</label>
+                <select id="horarioSemanaJornada">
+                  <option>Mañana</option><option>Tarde</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group"><label>Hora de inicio sugerida (la clase dura 5 horas exactas)</label><input type="time" id="horarioSemanaHora"></div>
+          </div>
+
+          <!-- EXPERIENCIA -->
+          <div class="form-group">
+            <label>¿Tienes experiencia en modelaje?</label>
+            <div class="toggle-row">
+              <button type="button" class="toggle-btn active" id="expSi" onclick="selectExp('si', this)">Sí tengo experiencia</button>
+              <button type="button" class="toggle-btn" id="expNo" onclick="selectExp('no', this)">Sin experiencia</button>
+            </div>
+          </div>
+
+          <!-- ACUDIENTE (solo menores, se muestra automáticamente según fecha de nacimiento) -->
+          <div id="acudienteSection" style="display:none">
+            <div class="acudiente-label">Datos del acudiente o representante legal</div>
+            <div class="form-group"><label>Nombre del acudiente</label><input type="text" id="acudNombre" placeholder="Nombre completo del acudiente"></div>
+            <div class="form-row">
+              <div class="form-group"><label>Cédula del acudiente</label><input type="text" id="acudCC" placeholder="N° de cédula"></div>
+              <div class="form-group"><label>WhatsApp acudiente</label><input type="tel" id="acudTel" placeholder="+57 300 000 0000"></div>
+            </div>
+          </div>
+
+          <!-- FOTO CUERPO ENTERO -->
+          <div class="form-group">
+            <label>Foto cuerpo entero <span style="color:var(--gold)">*</span></label>
+            <div class="upload-area" onclick="document.getElementById('fotoCompletaInput').click()">
+              <div class="upload-placeholder" id="fotoCompletaPH">
+                <div class="upload-plus">+</div>
+                <div>Toca para subir foto de cuerpo entero</div>
+                <div class="upload-hint">JPG · PNG · máx 5MB</div>
+              </div>
+              <img id="fotoCompletaPrev" style="display:none;width:100%;max-height:160px;object-fit:cover">
+            </div>
+            <input type="file" id="fotoCompletaInput" accept="image/*" style="display:none" onchange="previewFoto('completa', this)">
+          </div>
+
+          <!-- FOTO MEDIO CUERPO -->
+          <div class="form-group">
+            <label>Foto medio cuerpo <span style="color:var(--gold)">*</span></label>
+            <div class="upload-area" onclick="document.getElementById('fotoMedioInput').click()">
+              <div class="upload-placeholder" id="fotoMedioPH">
+                <div class="upload-plus">+</div>
+                <div>Toca para subir foto medio cuerpo</div>
+                <div class="upload-hint">JPG · PNG · máx 5MB</div>
+              </div>
+              <img id="fotoMedioPrev" style="display:none;width:100%;max-height:160px;object-fit:cover">
+            </div>
+            <input type="file" id="fotoMedioInput" accept="image/*" style="display:none" onchange="previewFoto('medio', this)">
+          </div>
+
+          <!-- AUTORIZACIÓN DE DATOS -->
+          <div class="consent-box">
+            <div class="consent-text">
+              <strong>Autorización de tratamiento de datos personales</strong><br><br>
+              De conformidad con la Ley 1581 de 2012 y el Decreto 1377 de 2013, autorizo a <strong>Inspira Models</strong> para recolectar, almacenar, usar y circular mis datos personales e imágenes fotográficas con fines de evaluación de perfil, portafolio digital, procesos de selección, campañas publicitarias y toda comunicación relacionada con la academia. Los datos serán tratados con total confidencialidad y no serán compartidos con terceros sin consentimiento previo.
+            </div>
+            <label class="consent-check">
+              <input type="checkbox" id="inscConsent" required>
+              <span>He leído y acepto la autorización de tratamiento de datos personales</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary" id="inscSubmitBtn" style="width:100%;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;margin-top:4px">Enviar solicitud</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<!-- ADMIN ACCESS -->
+<a href="admin.html" title="Panel directora" style="position:fixed;bottom:28px;left:28px;z-index:9999;padding:10px 20px;border:1px solid #c9a96e;background:#111;color:#c9a96e;font-family:'Montserrat',sans-serif;font-size:0.6rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;transition:all 0.3s" onmouseover="this.style.background='#c9a96e';this.style.color='#111'" onmouseout="this.style.background='#111';this.style.color='#c9a96e'">Admin</a>
 
 <!-- WHATSAPP -->
 <a href="https://wa.me/573104479013" class="whatsapp-btn" target="_blank" title="Contáctanos por WhatsApp">💬</a>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Inspira Models</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --gold: #c9a96e; --bg: #080807; --card: #111110; --border: rgba(201,169,110,0.15); --text: #f5f2ee; --muted: rgba(245,242,238,0.45); }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+
+  /* LOGIN */
+  #loginScreen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+  .login-box { background: var(--card); border: 1px solid var(--border); padding: 48px 40px; width: 100%; max-width: 400px; text-align: center; }
+  .login-logo { font-size: 1.6rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .login-logo span { color: var(--gold); }
+  .login-sub { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 36px; }
+  .login-input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text); font-size: 0.9rem; padding: 14px 16px; outline: none; margin-bottom: 16px; font-family: inherit; }
+  .login-input:focus { border-color: rgba(201,169,110,0.5); }
+  .login-btn { width: 100%; padding: 14px; background: var(--gold); color: #080807; border: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
+  .login-btn:hover { opacity: 0.85; }
+  .login-error { color: #e06b6b; font-size: 0.8rem; margin-top: 12px; display: none; }
+
+  /* DASHBOARD */
+  #dashboard { display: none; }
+  .admin-nav { background: rgba(10,10,9,0.97); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  .admin-logo { font-size: 1.1rem; font-weight: 300; letter-spacing: 0.08em; }
+  .admin-logo span { color: var(--gold); }
+  .admin-nav-right { display: flex; align-items: center; gap: 20px; }
+  .admin-user { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+  .logout-btn { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 0.65rem; letter-spacing: 0.15em; padding: 6px 14px; cursor: pointer; font-family: inherit; transition: all 0.2s; text-transform: uppercase; }
+  .logout-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .admin-body { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+  /* STATS */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); padding: 24px; }
+  .stat-card-num { font-size: 2.2rem; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 6px; }
+  .stat-card-label { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+
+  /* TABS */
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 28px; }
+  .tab-btn { background: none; border: none; border-bottom: 2px solid transparent; color: var(--muted); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; padding: 12px 20px; cursor: pointer; font-family: inherit; transition: all 0.2s; margin-bottom: -1px; }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+  .tab-btn:hover:not(.active) { color: var(--text); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  th { color: var(--gold); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--border); font-weight: 600; }
+  td { padding: 12px 12px; border-bottom: 1px solid rgba(245,242,238,0.05); color: rgba(245,242,238,0.85); vertical-align: top; }
+  tr:hover td { background: rgba(201,169,110,0.03); }
+  .empty-msg { text-align: center; padding: 48px; color: var(--muted); font-size: 0.85rem; }
+
+  /* SECTION HEADER */
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .section-title-sm { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  .count-badge { background: rgba(201,169,110,0.12); color: var(--gold); font-size: 0.7rem; padding: 4px 12px; border-radius: 999px; font-weight: 600; }
+
+  /* PROFESOR FORM */
+  .profesor-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .form-card { background: var(--card); border: 1px solid var(--border); padding: 28px; }
+  .form-card-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; }
+  .fg { margin-bottom: 16px; }
+  .fg label { display: block; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .fg input, .fg textarea, .fg select { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text); font-size: 0.82rem; padding: 10px 12px; outline: none; font-family: inherit; -webkit-appearance: none; appearance: none; }
+  .fg input:focus, .fg textarea:focus, .fg select:focus { border-color: rgba(201,169,110,0.5); }
+  .fg textarea { resize: vertical; min-height: 80px; }
+  .submit-btn { width: 100%; padding: 12px; background: var(--gold); color: #080807; border: none; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: inherit; transition: opacity 0.2s; margin-top: 8px; }
+  .submit-btn:hover { opacity: 0.85; }
+  .form-msg { font-size: 0.78rem; margin-top: 12px; display: none; }
+  .form-msg.ok { color: #6be06b; }
+  .form-msg.err { color: #e06b6b; }
+
+  /* PROFESOR CARDS */
+  .prof-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+  .prof-card { background: rgba(255,255,255,0.025); border: 1px solid var(--border); padding: 16px 18px; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .prof-name { font-size: 0.95rem; font-weight: 500; margin-bottom: 4px; }
+  .prof-esp { font-size: 0.7rem; color: var(--gold); letter-spacing: 0.08em; margin-bottom: 6px; }
+  .prof-bio { font-size: 0.75rem; color: var(--muted); line-height: 1.5; }
+  .prof-badge { background: rgba(201,169,110,0.1); color: var(--gold); font-size: 0.6rem; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+
+  .refresh-btn { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 0.6rem; letter-spacing: 0.15em; padding: 6px 14px; cursor: pointer; font-family: inherit; transition: all 0.2s; text-transform: uppercase; }
+  .refresh-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* FOTOS (tabla inscripciones) */
+  .photo-thumb { width: 38px; height: 38px; object-fit: cover; border: 1px solid var(--border); cursor: zoom-in; display: inline-block; margin-right: 4px; vertical-align: middle; transition: opacity 0.2s; }
+  .photo-thumb:hover { opacity: 0.8; }
+  .badge-pendiente { background: rgba(255,200,50,0.12); color: #ffc832; font-size: 0.6rem; padding: 3px 8px; border-radius: 3px; white-space: nowrap; }
+  .badge-aceptado  { background: rgba(107,224,107,0.12); color: #6be06b; font-size: 0.6rem; padding: 3px 8px; border-radius: 3px; white-space: nowrap; }
+  .badge-rechazado { background: rgba(224,107,107,0.12); color: #e06b6b; font-size: 0.6rem; padding: 3px 8px; border-radius: 3px; white-space: nowrap; }
+  .btn-aceptar  { background: none; border: 1px solid #6be06b; color: #6be06b; font-size: 0.58rem; padding: 4px 10px; cursor: pointer; font-family: inherit; letter-spacing: 0.1em; transition: background 0.2s; margin-right: 4px; }
+  .btn-aceptar:hover  { background: rgba(107,224,107,0.12); }
+  .btn-rechazar { background: none; border: 1px solid #e06b6b; color: #e06b6b; font-size: 0.58rem; padding: 4px 10px; cursor: pointer; font-family: inherit; letter-spacing: 0.1em; transition: background 0.2s; }
+  .btn-rechazar:hover { background: rgba(224,107,107,0.12); }
+
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out; padding: 24px; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; border: 1px solid var(--border); }
+
+  @media (max-width: 768px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .profesor-layout { grid-template-columns: 1fr; }
+    .admin-nav { padding: 0 16px; }
+    .admin-body { padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">Inspira <span>Models</span></div>
+    <div class="login-sub">Panel de administración</div>
+    <input class="login-input" type="password" id="loginPass" placeholder="Contraseña" onkeydown="if(event.key==='Enter') doLogin()">
+    <button class="login-btn" onclick="doLogin()">Ingresar</button>
+    <div class="login-error" id="loginError">Contraseña incorrecta</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <nav class="admin-nav">
+    <div class="admin-logo">Inspira <span>Models</span> <span style="font-size:0.6rem;color:var(--muted);margin-left:8px;letter-spacing:0.15em">ADMIN</span></div>
+    <div class="admin-nav-right">
+      <span class="admin-user">Directora</span>
+      <button class="logout-btn" onclick="doLogout()">Salir</button>
+    </div>
+  </nav>
+
+  <div class="admin-body">
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card-num" id="statInsc">—</div>
+        <div class="stat-card-label">Inscripciones</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num" id="statMarcas">—</div>
+        <div class="stat-card-label">Solicitudes marcas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num" id="statGrupo">—</div>
+        <div class="stat-card-label">Cursos grupales</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num" id="statProf">—</div>
+        <div class="stat-card-label">Profesores</div>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('inscripciones', this)">Inscripciones</button>
+      <button class="tab-btn" onclick="switchTab('marcas', this)">Marcas</button>
+      <button class="tab-btn" onclick="switchTab('grupos', this)">Grupos</button>
+      <button class="tab-btn" onclick="switchTab('profesores', this)">Profesores</button>
+      <button class="tab-btn" onclick="switchTab('modelos', this)">Modelos</button>
+      <button class="tab-btn" onclick="switchTab('agendaAcademica', this)">Agenda Académica</button>
+      <button class="tab-btn" onclick="switchTab('pagosMensualidad', this)">Pagos Mensualidad</button>
+      <button class="tab-btn" onclick="switchTab('resenas', this)">Reseñas</button>
+      <button class="tab-btn" onclick="switchTab('historias', this)">Historias</button>
+      <button class="tab-btn" onclick="switchTab('noticias', this)">Noticiero</button>
+      <button class="tab-btn" onclick="switchTab('tienda', this)">Tienda</button>
+      <button class="tab-btn" onclick="switchTab('empresasReg', this)">Empresas</button>
+      <button class="tab-btn" onclick="switchTab('cotizaciones', this)">Cotizaciones</button>
+      <button class="tab-btn" onclick="switchTab('agendaLaboral', this)">Agenda Laboral</button>
+      <button class="tab-btn" onclick="switchTab('emprendimientos', this)">Emprendimientos</button>
+    </div>
+
+    <!-- INSCRIPCIONES -->
+    <div class="tab-panel active" id="panel-inscripciones">
+      <div class="section-header">
+        <span class="section-title-sm">Listado de inscripciones</span>
+        <div style="display:flex;gap:10px;align-items:center">
+          <span class="count-badge" id="badgeInsc">0 registros</span>
+          <button class="refresh-btn" onclick="loadData()">↻ Actualizar</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nombre</th><th>Documento</th><th>Edad</th><th>Email</th><th>WhatsApp</th><th>Horario</th><th>Exp.</th><th>Mayor/Menor</th><th>Acudiente</th><th>Fotos</th><th>Estado</th><th>Acciones</th><th>Fecha</th></tr></thead>
+          <tbody id="tbodyInsc"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MARCAS -->
+    <div class="tab-panel" id="panel-marcas">
+      <div class="section-header">
+        <span class="section-title-sm">Solicitudes de empresas</span>
+        <span class="count-badge" id="badgeMarcas">0 registros</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Empresa</th><th>Contacto</th><th>WhatsApp / Email</th><th>Tipo campaña</th><th>Mensaje</th><th>Fecha</th></tr></thead>
+          <tbody id="tbodyMarcas"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GRUPOS -->
+    <div class="tab-panel" id="panel-grupos">
+      <div class="section-header">
+        <span class="section-title-sm">Solicitudes de curso grupal</span>
+        <span class="count-badge" id="badgeGrupo">0 registros</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nombre</th><th>WhatsApp</th><th>Tipo</th><th>Personas</th><th>Fecha</th></tr></thead>
+          <tbody id="tbodyGrupo"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROFESORES -->
+    <div class="tab-panel" id="panel-profesores">
+      <div class="profesor-layout">
+
+        <!-- FORM -->
+        <div class="form-card">
+          <div class="form-card-title">Crear perfil de profesor</div>
+          <div class="fg"><label>Nombre completo</label><input type="text" id="pfNombre" placeholder="Ej: Carolina Martínez"></div>
+          <div class="fg"><label>Documento</label><input type="text" id="pfDocumento" placeholder="N° de cédula"></div>
+          <div class="fg"><label>Especialidad</label><input type="text" id="pfEsp" placeholder="Ej: Pasarela & Fotopose"></div>
+          <div class="fg"><label>Materias que dicta</label><input type="text" id="pfMaterias" placeholder="Ej: Pasarela, Styling, Maquillaje"></div>
+          <div class="fg"><label>Correo electrónico</label><input type="email" id="pfEmail" placeholder="correo@ejemplo.com"></div>
+          <div class="fg"><label>Teléfono</label><input type="tel" id="pfTelefono" placeholder="+57 300 000 0000"></div>
+          <div class="fg"><label>Biografía</label><textarea id="pfBio" placeholder="Breve descripción profesional..."></textarea></div>
+          <button class="submit-btn" onclick="crearProfesor()">Crear perfil y enviar credenciales</button>
+          <div class="form-msg ok" id="profOk">✓ Perfil creado correctamente</div>
+          <div class="form-msg err" id="profErr">✗ Error al crear el perfil</div>
+        </div>
+
+        <!-- LISTA -->
+        <div>
+          <div class="section-header" style="margin-bottom:16px">
+            <span class="section-title-sm">Profesores activos</span>
+            <span class="count-badge" id="badgeProf">0</span>
+          </div>
+          <div class="prof-grid" id="profGrid">
+            <div class="empty-msg">No hay profesores registrados aún.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MODELOS -->
+    <div class="tab-panel" id="panel-modelos">
+      <div class="profesor-layout">
+
+        <!-- FORM SEGUIMIENTO -->
+        <div class="form-card">
+          <div class="form-card-title">Agregar comentario / calificación</div>
+          <div class="fg"><label>Modelo</label>
+            <select id="sgModelo"><option value="">Selecciona una modelo</option></select>
+          </div>
+          <div class="fg"><label>Área de formación</label>
+            <select id="sgMateria">
+              <option>Pasarela</option><option>Actuación</option><option>Expresión corporal</option>
+              <option>Oratoria</option><option>Fotopose</option><option>Imagen personal</option>
+              <option>Redes sociales</option><option>Styling</option><option>Glamour</option>
+              <option>Protocolo y etiqueta</option>
+            </select>
+          </div>
+          <div class="fg"><label>Calificación (1.0 – 5.0)</label><input type="number" id="sgCalificacion" min="1" max="5" step="0.1" placeholder="Ej: 4.5"></div>
+          <div class="fg"><label>Sugerencias / refuerzos / talleres</label><textarea id="sgComentario" placeholder="Cosas a mejorar, felicitaciones, talleres recomendados..."></textarea></div>
+          <button class="submit-btn" onclick="agregarSeguimiento()">Agregar comentario</button>
+          <div class="form-msg ok" id="sgOk">✓ Comentario agregado</div>
+          <div class="form-msg err" id="sgErr">✗ Selecciona una modelo y escribe un comentario</div>
+        </div>
+
+        <!-- LISTA MODELOS -->
+        <div>
+          <div class="section-header" style="margin-bottom:16px">
+            <span class="section-title-sm">Modelos admitidas</span>
+            <span class="count-badge" id="badgeModelos">0</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Nombre</th><th>Usuario</th><th>Horario</th><th>Doc.</th><th>Contrato</th><th>Pago inscripción</th><th>Estado horario</th><th>Mensualidad</th><th>Proceso</th></tr></thead>
+              <tbody id="tbodyModelos"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- EDITAR CONTRATO -->
+      <div class="form-card" style="margin-top:32px">
+        <div class="form-card-title">Texto del contrato (visible para todas las modelos)</div>
+        <div class="fg"><textarea id="contratoTextoEdit" style="min-height:160px"></textarea></div>
+        <button class="submit-btn" onclick="guardarContrato()">Guardar contrato</button>
+        <div class="form-msg ok" id="contratoOk">✓ Contrato actualizado</div>
+      </div>
+    </div>
+
+    <!-- AGENDA ACADÉMICA -->
+    <div class="tab-panel" id="panel-agendaAcademica">
+      <div class="section-header">
+        <span class="section-title-sm">Horarios reservados / confirmados</span>
+        <button class="refresh-btn" onclick="loadData()">↻ Actualizar</button>
+      </div>
+      <div id="agendaConfirmados" style="margin-bottom:32px"></div>
+
+      <div class="section-header">
+        <span class="section-title-sm">Solicitudes pendientes (entre semana)</span>
+        <span class="count-badge" id="badgeAgendaPendientes">0</span>
+      </div>
+      <div id="agendaPendientes"></div>
+    </div>
+
+    <!-- PAGOS MENSUALIDAD -->
+    <div class="tab-panel" id="panel-pagosMensualidad">
+      <div class="section-header">
+        <span class="section-title-sm">Historial de pagos de mensualidad</span>
+        <span class="count-badge" id="badgePagosMensualidad">0</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Modelo</th><th>Mes</th><th>Valor</th><th>Comprobante</th><th>Fecha</th></tr></thead>
+          <tbody id="tbodyPagosMensualidad"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RESEÑAS -->
+    <div class="tab-panel" id="panel-resenas">
+      <div class="section-header">
+        <span class="section-title-sm">Reseñas pendientes y publicadas</span>
+        <span class="count-badge" id="badgeResenas">0</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nombre</th><th>Tipo</th><th>Calificación</th><th>Comentario</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="tbodyResenas"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- HISTORIAS -->
+    <div class="tab-panel" id="panel-historias">
+      <div class="section-header">
+        <span class="section-title-sm">Historias pendientes y publicadas</span>
+        <span class="count-badge" id="badgeHistorias">0</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Nombre</th><th>Historia</th><th>Foto</th><th>Video</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="tbodyHistorias"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NOTICIERO -->
+    <div class="tab-panel" id="panel-noticias">
+      <div class="profesor-layout">
+        <div class="form-card">
+          <div class="form-card-title">Publicar noticia</div>
+          <div class="fg"><label>Título</label><input type="text" id="ntTitulo" placeholder="Ej: Inicia la Semana de la Moda en Bogotá"></div>
+          <div class="fg"><label>Resumen</label><textarea id="ntResumen" placeholder="Breve resumen de la noticia..."></textarea></div>
+          <div class="fg"><label>Link (opcional)</label><input type="text" id="ntLink" placeholder="https://..."></div>
+          <div class="fg"><label>Imagen (opcional)</label><input type="file" id="ntImagenInput" accept="image/*"></div>
+          <button class="submit-btn" onclick="crearNoticia()">Publicar noticia</button>
+          <div class="form-msg ok" id="ntOk">✓ Noticia publicada</div>
+        </div>
+        <div>
+          <div class="section-header" style="margin-bottom:16px">
+            <span class="section-title-sm">Noticias publicadas</span>
+            <span class="count-badge" id="badgeNoticias">0</span>
+          </div>
+          <div class="prof-grid" id="noticiasGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIENDA -->
+    <div class="tab-panel" id="panel-tienda">
+      <div class="profesor-layout">
+        <div class="form-card">
+          <div class="form-card-title">Agregar producto</div>
+          <div class="fg"><label>Nombre</label><input type="text" id="prNombre" placeholder="Ej: Gorra Inspira Models"></div>
+          <div class="fg"><label>Descripción</label><textarea id="prDescripcion" placeholder="Breve descripción..."></textarea></div>
+          <div class="fg"><label>Precio (COP)</label><input type="number" id="prPrecio" placeholder="Ej: 45000"></div>
+          <div class="fg"><label>Categoría</label><input type="text" id="prCategoria" placeholder="Ej: Accesorios"></div>
+          <div class="fg"><label>Imagen</label><input type="file" id="prImagenInput" accept="image/*"></div>
+          <button class="submit-btn" onclick="crearProducto()">Agregar producto</button>
+          <div class="form-msg ok" id="prOk">✓ Producto agregado</div>
+        </div>
+        <div>
+          <div class="section-header" style="margin-bottom:16px">
+            <span class="section-title-sm">Productos en tienda</span>
+            <span class="count-badge" id="badgeProductos">0</span>
+          </div>
+          <div class="prof-grid" id="productosGrid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPRESAS REGISTRADAS -->
+    <div class="tab-panel" id="panel-empresasReg">
+      <div class="section-header">
+        <span class="section-title-sm">Registros de empresas</span>
+        <span class="count-badge" id="badgeEmpresasReg">0</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Razón social</th><th>Representante</th><th>Email</th><th>WhatsApp</th><th>Servicios</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="tbodyEmpresasReg"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- COTIZACIONES -->
+    <div class="tab-panel" id="panel-cotizaciones">
+      <div class="section-header">
+        <span class="section-title-sm">Cursos y cotizaciones</span>
+        <span class="count-badge" id="badgeCotizaciones">0</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Radicado</th><th>Nombre</th><th>Curso</th><th>Personas</th><th>Estado</th><th>Cotizar</th><th>Asignar profesor</th><th>Fecha</th></tr></thead>
+          <tbody id="tbodyCotizaciones"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AGENDA LABORAL -->
+    <div class="tab-panel" id="panel-agendaLaboral">
+      <div class="profesor-layout">
+        <div class="form-card">
+          <div class="form-card-title">Crear convocatoria</div>
+          <div class="fg"><label>Marca / Cliente</label><input type="text" id="cvMarca" placeholder="Ej: Marca XYZ"></div>
+          <div class="fg"><label>Cliente / Contacto</label><input type="text" id="cvCliente"></div>
+          <div class="fg"><label>Fecha</label><input type="date" id="cvFecha"></div>
+          <div class="fg"><label>Lugar</label><input type="text" id="cvLugar"></div>
+          <div class="fg"><label>Hora</label><input type="text" id="cvHora" placeholder="Ej: 2:00 PM"></div>
+          <div class="fg"><label>Pago</label><input type="text" id="cvPago" placeholder="Ej: $300.000"></div>
+          <div class="fg"><label>Requisitos</label><textarea id="cvRequisitos"></textarea></div>
+          <button class="submit-btn" onclick="crearConvocatoria()">Crear y notificar</button>
+          <div class="form-msg ok" id="cvOk">✓ Convocatoria creada</div>
+        </div>
+        <div>
+          <div class="section-header" style="margin-bottom:16px">
+            <span class="section-title-sm">Respuestas de modelos</span>
+            <span class="count-badge" id="badgeConvocatorias">0</span>
+          </div>
+          <div id="convocatoriasList"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPRENDIMIENTOS -->
+    <div class="tab-panel" id="panel-emprendimientos">
+      <div class="section-header">
+        <span class="section-title-sm">Solicitudes de emprendimientos externos</span>
+        <span class="count-badge" id="badgeEmprendimientos">0</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Negocio</th><th>Tipo</th><th>Categoría</th><th>Contacto</th><th>Estado</th><th>Acciones</th></tr></thead>
+          <tbody id="tbodyEmprendimientos"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LIGHTBOX FOTOS -->
+<div class="lightbox" id="fotoLightbox" onclick="cerrarFoto()">
+  <img id="fotoLightboxImg" src="">
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>

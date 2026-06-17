@@ -128,6 +128,8 @@
   <a href="#proceso" onclick="closeNav()">Cómo funciona</a>
   <a href="#beneficios" onclick="closeNav()">Beneficios</a>
   <a href="#contacto" onclick="closeNav()">Solicitar talentos</a>
+  <a href="#registro" onclick="closeNav()">Registrarme</a>
+  <a href="empresa.html" onclick="closeNav()">Portal Empresas</a>
   <a href="https://wa.me/573104479013" target="_blank" style="color:var(--gold)">WhatsApp</a>
 </div>
 
@@ -139,6 +141,7 @@
     <li><a href="#proceso">Cómo funciona</a></li>
     <li><a href="#beneficios">Beneficios</a></li>
     <li><a href="#tarifas">Tipos de campaña</a></li>
+    <li><a href="empresa.html">Portal Empresas</a></li>
   </ul>
   <a href="#contacto" class="nav-cta">Solicitar talentos</a>
   <div class="nav-hamburger" onclick="openNav()">
@@ -344,6 +347,48 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- REGISTRO DE EMPRESA (acceso al Portal de Empresas) -->
+<section class="emp-process-section" id="registro">
+  <div style="text-align:center;margin-bottom:60px">
+    <p class="section-label reveal" style="justify-content:center">Portal de empresas</p>
+    <h2 class="section-title reveal reveal-delay-1">Regístrate como<br><em>empresa aliada</em></h2>
+    <p class="section-text reveal reveal-delay-2" style="max-width:600px;margin:0 auto">Si ya tienes una relación comercial con nosotros, regístrate para acceder a tu panel: historial de solicitudes, promociones, cotizaciones y más. La directora revisa cada registro antes de aprobarlo.</p>
+  </div>
+  <div id="regEmpresaSuccess" class="form-success" style="max-width:560px;margin:0 auto">
+    <span class="form-success-icon">✦</span>
+    <div class="form-success-title">Registro enviado</div>
+    <p class="form-success-text">Revisaremos tu información y te enviaremos las credenciales de acceso por correo en menos de 48 horas.</p>
+  </div>
+  <div id="regEmpresaFormWrap" style="max-width:680px;margin:0 auto">
+    <form onsubmit="submitRegistroEmpresa(event)">
+      <div class="form-row">
+        <div class="form-group"><label>Razón social</label><input type="text" id="regRazonSocial" required></div>
+        <div class="form-group"><label>Nombre representante</label><input type="text" id="regRepresentante" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Cámara de comercio (N°)</label><input type="text" id="regCamara"></div>
+        <div class="form-group"><label>RUT</label><input type="text" id="regRut"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Documento representante</label><input type="text" id="regDocumento"></div>
+        <div class="form-group"><label>Correo electrónico</label><input type="email" id="regEmail" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>WhatsApp</label><input type="tel" id="regWhatsapp" required></div>
+        <div class="form-group"><label>Teléfono fijo (opcional)</label><input type="tel" id="regTelefono"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Instagram (opcional)</label><input type="text" id="regInstagram" placeholder="@empresa"></div>
+        <div class="form-group"><label>Página web (opcional)</label><input type="text" id="regWeb" placeholder="https://..."></div>
+      </div>
+      <div class="form-group"><label>Actividad económica</label><input type="text" id="regActividad" placeholder="Ej: Comercio textil, eventos, publicidad..."></div>
+      <div class="form-group"><label>Descripción de la empresa</label><textarea rows="2" id="regDescripcion"></textarea></div>
+      <div class="form-group"><label>Servicios que requieren</label><textarea rows="2" id="regServicios" placeholder="Ej: Modelos para campaña, cursos de protocolo para el equipo..."></textarea></div>
+      <button type="submit" class="btn-primary" style="width:100%;border:none;cursor:pointer;font-family:'Montserrat',sans-serif">Enviar registro</button>
+    </form>
   </div>
 </section>
 

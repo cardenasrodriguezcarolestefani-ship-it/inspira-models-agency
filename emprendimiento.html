@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portal de Emprendimientos · Inspira Models</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --gold: #c9a96e; --bg: #080807; --card: #111110; --border: rgba(201,169,110,0.15); --text: #f5f2ee; --muted: rgba(245,242,238,0.45); --green: #6be06b; --red: #e06b6b; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+
+  #loginScreen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+  .login-box { background: var(--card); border: 1px solid var(--border); padding: 48px 40px; width: 100%; max-width: 400px; text-align: center; }
+  .login-logo { font-size: 1.6rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 8px; }
+  .login-logo span { color: var(--gold); }
+  .login-sub { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 36px; }
+  .login-input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text); font-size: 0.9rem; padding: 14px 16px; outline: none; margin-bottom: 16px; font-family: inherit; }
+  .login-btn { width: 100%; padding: 14px; background: var(--gold); color: #080807; border: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: inherit; }
+  .login-error { color: var(--red); font-size: 0.8rem; margin-top: 12px; display: none; }
+  .login-back { display: inline-block; margin-top: 20px; font-size: 0.65rem; color: var(--muted); text-decoration: none; }
+  .login-back:hover { color: var(--gold); }
+
+  .top-nav { background: rgba(10,10,9,0.97); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  .top-logo { font-size: 1.1rem; font-weight: 300; }
+  .top-logo span { color: var(--gold); }
+  .logout-btn { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 0.65rem; padding: 6px 14px; cursor: pointer; font-family: inherit; text-transform: uppercase; }
+  .logout-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .page-body { max-width: 800px; margin: 0 auto; padding: 40px 24px 80px; }
+  .dash-greeting { font-size: 1.5rem; font-weight: 300; margin-bottom: 32px; }
+  .dash-greeting span { color: var(--gold); }
+
+  .fg { margin-bottom: 14px; }
+  .fg label { display: block; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .fg input, .fg textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text); font-size: 0.8rem; padding: 10px 12px; outline: none; font-family: inherit; }
+  .fg textarea { min-height: 70px; resize: vertical; }
+
+  .submit-btn { padding: 12px 22px; background: var(--gold); color: #080807; border: none; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-family: inherit; }
+  .form-card { background: var(--card); border: 1px solid var(--border); padding: 26px; margin-bottom: 24px; }
+  .form-card-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .section-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; border-left: 2px solid var(--gold); padding-left: 10px; }
+
+  .producto-mini { display: flex; gap: 14px; align-items: center; border: 1px solid var(--border); padding: 12px 16px; margin-bottom: 8px; }
+  .producto-mini img { width: 48px; height: 48px; object-fit: cover; }
+  .empty-msg { color: var(--muted); font-size: 0.8rem; padding: 4px 0 16px; }
+</style>
+</head>
+<body>
+
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">Inspira <span>Models</span></div>
+    <div class="login-sub">Portal de Emprendimientos</div>
+    <input class="login-input" type="text" id="loginUsuario" placeholder="Usuario">
+    <input class="login-input" type="password" id="loginPass" placeholder="Contraseña" onkeydown="if(event.key==='Enter') doLogin()">
+    <button class="login-btn" onclick="doLogin()">Ingresar</button>
+    <div class="login-error" id="loginError">Usuario o contraseña incorrectos</div>
+    <a href="index.html#emprendimientos" class="login-back">← Volver</a>
+  </div>
+</div>
+
+<div id="dashboard" style="display:none">
+  <nav class="top-nav">
+    <div class="top-logo">Inspira <span>Models</span></div>
+    <button class="logout-btn" onclick="doLogout()">Salir</button>
+  </nav>
+  <div class="page-body">
+    <div class="dash-greeting"><span id="dashNombre"></span></div>
+
+    <div class="form-card">
+      <div class="form-card-title">Agregar producto</div>
+      <div class="fg"><label>Nombre</label><input type="text" id="prodNombre"></div>
+      <div class="fg"><label>Descripción</label><textarea id="prodDescripcion"></textarea></div>
+      <div class="fg"><label>Precio</label><input type="number" id="prodPrecio"></div>
+      <div class="fg"><label>Cantidad disponible</label><input type="number" id="prodCantidad"></div>
+      <div class="fg"><label>Foto</label><input type="file" id="prodFotoInput" accept="image/*"></div>
+      <button class="submit-btn" onclick="agregarProducto()">Agregar producto</button>
+      <div id="prodOk" style="display:none;font-size:0.75rem;color:var(--green);margin-top:10px">✓ Producto agregado</div>
+    </div>
+
+    <div class="section-title">Mis productos</div>
+    <div id="productosList"></div>
+  </div>
+</div>
+
+<script src="emprendimiento.js"></script>
+</body>
+</html>
