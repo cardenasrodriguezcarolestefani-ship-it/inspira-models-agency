@@ -26,6 +26,33 @@ if (window.matchMedia('(pointer: fine)').matches) {
   document.body.style.cursor = 'auto';
 }
 
+// GLOW DEL HERO SIGUE EL CURSOR (solo desktop, respeta reduced-motion)
+const heroEl = document.querySelector('.hero');
+if (heroEl && window.matchMedia('(pointer: fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  heroEl.addEventListener('mousemove', e => {
+    const r = heroEl.getBoundingClientRect();
+    heroEl.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`);
+    heroEl.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`);
+  });
+}
+
+// CARRUSEL DE FOTOS DEL HERO
+const heroSlides = document.querySelectorAll('.hero-photo-slide');
+const heroDotsEl = document.getElementById('heroDots');
+let heroSlideIndex = 0;
+function setHeroSlide(i) {
+  if (!heroSlides.length) return;
+  heroSlideIndex = (i + heroSlides.length) % heroSlides.length;
+  heroSlides.forEach((s, idx) => s.classList.toggle('active', idx === heroSlideIndex));
+  if (heroDotsEl) heroDotsEl.querySelectorAll('span').forEach((d, idx) => d.classList.toggle('active', idx === heroSlideIndex));
+}
+function heroCarouselMove(dir) { setHeroSlide(heroSlideIndex + dir); }
+if (heroDotsEl && heroSlides.length) {
+  heroDotsEl.innerHTML = Array.from(heroSlides).map((_, i) => `<span data-i="${i}"></span>`).join('');
+  heroDotsEl.querySelectorAll('span').forEach(d => d.addEventListener('click', () => setHeroSlide(parseInt(d.dataset.i, 10))));
+  setHeroSlide(0);
+}
+
 // NAV SCROLL
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -114,6 +141,19 @@ function renderNoticiero(rows) {
       </div>
     </div>
   `).join('');
+  renderNoticieroBentoPreview(ordenadas);
+}
+
+function renderNoticieroBentoPreview(ordenadas) {
+  const preview = document.getElementById('noticieroBentoPreview');
+  if (!preview) return;
+  if (!ordenadas.length) { preview.innerHTML = '<p class="empty-msg-public">Próximamente.</p>'; return; }
+  preview.innerHTML = ordenadas.slice(0, 3).map(n => `
+    <a class="item" href="${n.link || '#noticiero'}" ${n.link ? 'target="_blank"' : ''}>
+      <h4>${escPub(n.titulo)}</h4>
+      <div class="meta">${fmtPub(n.created_at)}</div>
+    </a>
+  `).join('');
 }
 
 function renderTienda(rows) {
@@ -132,6 +172,16 @@ function renderTienda(rows) {
       </div>
     </div>`;
   }).join('');
+  renderTiendaBentoPreview(rows);
+}
+
+function renderTiendaBentoPreview(rows) {
+  const preview = document.getElementById('tiendaBentoPreview');
+  if (!preview) return;
+  if (!rows.length) { preview.innerHTML = '<p class="empty-msg-public" style="grid-column:1/-1">Próximamente.</p>'; return; }
+  preview.innerHTML = rows.slice(0, 3).map(p =>
+    p.imagen_url ? `<img src="${p.imagen_url}" alt="${escPub(p.nombre)}">` : '<div class="bento-prog-ph"></div>'
+  ).join('');
 }
 
 document.addEventListener('DOMContentLoaded', cargarContenidoPublico);
@@ -166,6 +216,16 @@ function renderCatalogo(rows) {
       </div>
     </div>
   `).join('');
+  renderCatalogoBentoPreview(rows);
+}
+
+function renderCatalogoBentoPreview(rows) {
+  const preview = document.getElementById('catalogoBentoPreview');
+  if (!preview) return;
+  if (!rows.length) { preview.innerHTML = '<p class="empty-msg-public" style="grid-column:1/-1">Próximamente.</p>'; return; }
+  preview.innerHTML = rows.slice(0, 3).map(m =>
+    m.fotos && m.fotos[0] ? `<img src="${m.fotos[0]}" alt="${escPub(m.nombre_artistico || m.nombre)}">` : '<div class="bento-prog-ph"></div>'
+  ).join('');
 }
 
 function renderEmprendimientos(rows) {

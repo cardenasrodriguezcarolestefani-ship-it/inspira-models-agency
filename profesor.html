@@ -7,18 +7,27 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root { --gold: #c9a96e; --bg: #080807; --card: #111110; --border: rgba(201,169,110,0.15); --text: #f5f2ee; --muted: rgba(245,242,238,0.45); --green: #6be06b; --red: #e06b6b; --yellow: #ffc832; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; min-height: 100vh; position: relative; }
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 99; opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
 
-  #loginScreen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
-  .login-box { background: var(--card); border: 1px solid var(--border); padding: 48px 40px; width: 100%; max-width: 400px; text-align: center; }
+  #loginScreen {
+    display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px;
+    background: radial-gradient(ellipse at 50% 35%, rgba(201,169,110,0.09) 0%, transparent 60%), var(--bg);
+  }
+  .login-box { background: var(--card); border: 1px solid var(--border); box-shadow: inset 0 1px 0 rgba(255,255,255,0.045); padding: 48px 40px; width: 100%; max-width: 400px; text-align: center; }
   .login-logo { font-size: 1.6rem; font-weight: 300; letter-spacing: 0.1em; margin-bottom: 8px; }
   .login-logo span { color: var(--gold); }
   .login-sub { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 36px; }
   .login-input { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text); font-size: 0.9rem; padding: 14px 16px; outline: none; margin-bottom: 16px; font-family: inherit; }
   .login-input:focus { border-color: rgba(201,169,110,0.5); }
-  .login-btn { width: 100%; padding: 14px; background: var(--gold); color: #080807; border: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
+  .login-btn { position: relative; overflow: hidden; width: 100%; padding: 14px; background: var(--gold); color: #080807; border: none; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
   .login-btn:hover { opacity: 0.85; }
   .login-btn:disabled { opacity: 0.5; }
+  .login-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 32%, rgba(255,255,255,0.6) 50%, transparent 68%); transform: translateX(-130%); }
+  .login-btn:hover::after { transform: translateX(130%); transition: transform 0.75s cubic-bezier(0.2,0.7,0.2,1); }
   .login-error { color: var(--red); font-size: 0.8rem; margin-top: 12px; display: none; }
   .login-back { display: inline-block; margin-top: 20px; font-size: 0.65rem; color: var(--muted); text-decoration: none; letter-spacing: 0.1em; }
   .login-back:hover { color: var(--gold); }
@@ -44,11 +53,13 @@
   .fg input, .fg select, .fg textarea { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); color: var(--text); font-size: 0.8rem; padding: 10px 12px; outline: none; font-family: inherit; }
   .fg textarea { min-height: 70px; resize: vertical; }
 
-  .submit-btn { padding: 12px 22px; background: var(--gold); color: #080807; border: none; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
+  .submit-btn { position: relative; overflow: hidden; padding: 12px 22px; background: var(--gold); color: #080807; border: none; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; font-family: inherit; transition: opacity 0.2s; }
   .submit-btn:hover { opacity: 0.85; }
   .submit-btn.block { width: 100%; }
+  .submit-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 32%, rgba(255,255,255,0.6) 50%, transparent 68%); transform: translateX(-130%); }
+  .submit-btn:hover::after { transform: translateX(130%); transition: transform 0.75s cubic-bezier(0.2,0.7,0.2,1); }
 
-  .form-card { background: var(--card); border: 1px solid var(--border); padding: 26px; margin-bottom: 24px; }
+  .form-card { background: var(--card); border: 1px solid var(--border); box-shadow: inset 0 1px 0 rgba(255,255,255,0.045); padding: 26px; margin-bottom: 24px; }
   .form-card-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
   .form-msg { font-size: 0.75rem; margin-top: 12px; display: none; }
   .form-msg.ok { color: var(--green); }
@@ -64,18 +75,23 @@
   .btn-mini { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 0.58rem; letter-spacing: 0.08em; padding: 6px 10px; cursor: pointer; font-family: inherit; text-transform: uppercase; transition: all 0.2s; }
   .btn-mini:hover { border-color: var(--gold); color: var(--gold); }
 
-  .excusa-card { border: 1px solid var(--border); padding: 16px 18px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .excusa-card { border: 1px solid var(--border); box-shadow: inset 0 1px 0 rgba(255,255,255,0.045); padding: 16px 18px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
   .excusa-info { font-size: 0.78rem; }
   .excusa-meta { font-size: 0.62rem; color: var(--muted); margin-top: 4px; }
   .btn-aceptar { background: none; border: 1px solid var(--green); color: var(--green); font-size: 0.6rem; padding: 6px 12px; cursor: pointer; font-family: inherit; }
   .btn-rechazar { background: none; border: 1px solid var(--red); color: var(--red); font-size: 0.6rem; padding: 6px 12px; cursor: pointer; font-family: inherit; }
 
-  .item-card { border: 1px solid var(--border); padding: 16px 18px; margin-bottom: 10px; }
+  .item-card { border: 1px solid var(--border); box-shadow: inset 0 1px 0 rgba(255,255,255,0.045); padding: 16px 18px; margin-bottom: 10px; }
   .item-title { font-size: 0.8rem; color: var(--gold); margin-bottom: 6px; }
   .item-desc { font-size: 0.75rem; color: rgba(245,242,238,0.6); line-height: 1.6; }
   .item-meta { font-size: 0.6rem; color: var(--muted); margin-top: 8px; }
 
   .empty-msg { color: var(--muted); font-size: 0.8rem; padding: 4px 0 16px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    body::after { display: none; }
+    .login-btn::after, .submit-btn::after { display: none; }
+  }
 </style>
 </head>
 <body>
